@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "ThousandsOfCourses"
 include(":app")
- 
+include(":feature")
+include(":feature:auth")
+include(":feature:auth:api")
+include(":feature:auth:impl")
