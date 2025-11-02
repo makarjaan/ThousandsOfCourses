@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun AppTheme(
-    content: () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colorScheme = darkColorScheme(
         background = background,
@@ -14,6 +14,7 @@ fun AppTheme(
         primary = primary,
         primaryContainer = primaryContainer,
         surface = surface,
+        outline = outline
     )
 
     MaterialTheme(

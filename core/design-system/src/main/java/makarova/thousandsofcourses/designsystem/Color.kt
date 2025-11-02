@@ -7,5 +7,7 @@ val background = Color(0xFF151515)
 val onBackground = Color(0xFFF2F2F3)
 
 val surface = Color(0xFF32333A)
+val outline = Color(0xFF4D555E)
 val primaryContainer = Color(0xFF12B955)
+
 

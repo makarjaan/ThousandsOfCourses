@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="auth_title">Вход</string>
+    <string name="tf_help_text_example">example@gmail.com</string>
+    <string name="tf_help_text_password">Введите пароль</string>
+    <string name="text_no_acc">Нет аккаунта?</string>
+    <string name="text_register">Регистрация</string>
+    <string name="text_forgot_pass">Забыл пароль</string>
 </resources>
