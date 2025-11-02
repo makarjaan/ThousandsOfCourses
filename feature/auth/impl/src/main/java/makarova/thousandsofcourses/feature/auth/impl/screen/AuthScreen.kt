@@ -49,7 +49,7 @@ fun AuthScreen (
 
 @Preview(showBackground = true, backgroundColor = 0xFF111213)
 @Composable
-private fun LoginPreview() {
+private fun AuthPreview() {
     AppTheme {
         AuthScreen(modifier = Modifier.padding(horizontal = 16.dp))
     }
