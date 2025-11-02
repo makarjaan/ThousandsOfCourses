@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun AppTheme(
-    content: @Composable() () -> Unit
+    content: () -> Unit
 ) {
     val colorScheme = darkColorScheme(
         background = background,
