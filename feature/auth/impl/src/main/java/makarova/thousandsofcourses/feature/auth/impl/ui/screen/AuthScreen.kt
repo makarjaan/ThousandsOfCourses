@@ -1,5 +1,6 @@
 package makarova.thousandsofcourses.feature.auth.impl.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -44,7 +45,9 @@ fun AuthScreen(
 ) {
 
     Surface(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier
@@ -75,6 +78,7 @@ fun AuthScreen(
 
             CustomTextField(
                 value = state.login,
+                isError = state.isEmailError,
                 onValueChange = { onEvent(AuthEvent.OnEmailChanged(it)) },
                 helpText = stringResource(R.string.tf_help_text_example)
             )
@@ -83,6 +87,7 @@ fun AuthScreen(
 
             CustomTextField(
                 value = state.password,
+                isError = false,
                 onValueChange = { onEvent(AuthEvent.OnPasswordChanged(it)) },
                 helpText = stringResource(R.string.tf_help_text_password)
             )

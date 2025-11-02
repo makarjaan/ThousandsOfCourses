@@ -15,11 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val loginUserUseCase: LoginUserUseCase
 ): ViewModel() {
-
-
 
     private val _uiState = MutableStateFlow(AuthState())
     val uiState: StateFlow<AuthState> = _uiState
@@ -42,11 +39,20 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun onEmailChanged(login: String) {
-        _uiState.update { it.copy(login = login, isEmailError = false) }
+        _uiState.update { it.copy(
+            login = login,
+            isEmailValid = isValidEmailFormat(login),
+            isEmailError = false)
+        }
     }
 
     private fun onPasswordChanged(password: String) {
         _uiState.update { it.copy(password = password, isPasswordError = false) }
+    }
+
+    private fun isValidEmailFormat(email: String): Boolean {
+        val emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$".toRegex()
+        return emailPattern.matches(email)
     }
 
     private fun onLoginClicked() {
@@ -59,6 +65,11 @@ class AuthViewModel @Inject constructor(
 
         if (currentState.password.isBlank()) {
             _uiState.update { it.copy(isPasswordError = true) }
+            return
+        }
+
+        if (!isValidEmailFormat(currentState.login)) {
+            _uiState.update { it.copy(isEmailError = true) }
             return
         }
 

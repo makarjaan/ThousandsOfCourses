@@ -4,6 +4,7 @@ data class AuthState(
     val login: String = "",
     val password: String = "",
     val isEmailError: Boolean = false,
+    val isEmailValid: Boolean = true,
     val isPasswordError: Boolean = false
 )
 

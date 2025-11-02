@@ -2,6 +2,8 @@ package makarova.thousandsofcourses.feature.auth.impl.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -9,11 +11,14 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun CustomTextField(
     value: String,
+    isError: Boolean,
     onValueChange: (String) -> Unit,
     helpText: String,
     modifier: Modifier = Modifier
@@ -29,6 +34,15 @@ fun CustomTextField(
                     .copy(alpha = 0.5f),
             )
         },
+        isError = isError,
+        supportingText = {
+            if (isError) {
+                Text("Введите корректный email")
+            }
+        },
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = ImeAction.Next
+        ),
         shape = RoundedCornerShape(30.dp),
         modifier = modifier
             .fillMaxWidth(),

@@ -6,8 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import makarova.thousandsofcourses.feature.auth.api.repository.AuthRepository
+import makarova.thousandsofcourses.feature.auth.api.usecase.LoginUserUseCase
 import makarova.thousandsofcourses.feature.auth.impl.navigation.AuthScreenRegistrationImpl
 import makarova.thousandsofcourses.feature.auth.impl.repository.AuthRepositoryImpl
+import makarova.thousandsofcourses.feature.auth.impl.usecase.LoginUserUseCaseImpl
 import makarova.thousandsofcourses.navigation.ScreenRegistration
 
 @Module
