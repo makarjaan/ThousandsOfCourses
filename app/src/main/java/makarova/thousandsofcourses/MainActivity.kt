@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
+import makarova.thousandsofcourses.designsystem.AppTheme
 import makarova.thousandsofcourses.navigation.MainNavGraph
 import makarova.thousandsofcourses.navigation.ScreenRegistration
 import javax.inject.Inject
@@ -20,7 +21,9 @@ class MainActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainNavGraph(screenRegistration = screenRegistration)
+            AppTheme {
+                MainNavGraph(screenRegistration = screenRegistration)
+            }
         }
     }
 }

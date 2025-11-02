@@ -4,23 +4,41 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 
+private val darkScheme = darkColorScheme(
+    primary = primary,
+    onPrimary = onPrimary,
+    primaryContainer = primaryContainer,
+    onPrimaryContainer = onPrimaryContainer,
+    secondary = secondary,
+    onSecondary = onSecondary,
+    secondaryContainer = secondaryContainer,
+    onSecondaryContainer = onSecondaryContainer,
+    tertiary = tertiary,
+    onTertiary = onTertiary,
+    tertiaryContainer = tertiaryContainer,
+    onTertiaryContainer = onTertiaryContainer,
+    background = background,
+    onBackground = onBackground,
+    surface = surface,
+    onSurface = onSurface,
+    surfaceVariant = surfaceVariant,
+    onSurfaceVariant = onSurfaceVariant,
+    error = error,
+    onError = onError,
+    errorContainer = errorContainer,
+    onErrorContainer = onErrorContainer,
+    outline = outline,
+    outlineVariant = outlineVariant
+)
+
+
 @Composable
 fun AppTheme(
     content: @Composable () -> Unit
 ) {
-    val colorScheme = darkColorScheme(
-        background = background,
-        onBackground = onBackground,
-        primary = primary,
-        primaryContainer = primaryContainer,
-        surface = surface,
-        outline = outline
-    )
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = darkScheme,
         typography = Typography,
         content = content
     )
 }
-

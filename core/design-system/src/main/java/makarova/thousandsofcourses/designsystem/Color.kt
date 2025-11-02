@@ -2,12 +2,26 @@ package makarova.thousandsofcourses.designsystem
 import androidx.compose.ui.graphics.Color
 
 val primary = Color(0xFF12B956)
-
+val onPrimary = Color(0xFF003915)
+val primaryContainer = Color(0xFF12B955)
+val onPrimaryContainer = Color(0xFFA2F5B8)
 val background = Color(0xFF151515)
 val onBackground = Color(0xFFF2F2F3)
-
 val surface = Color(0xFF32333A)
+val onSurface = Color(0xFFF2F2F3)
+val surfaceVariant = Color(0xFF40444D)
+val onSurfaceVariant = Color(0xFFC4C7CF)
 val outline = Color(0xFF4D555E)
-val primaryContainer = Color(0xFF12B955)
-
-
+val outlineVariant = Color(0xFF3A4047)
+val error = Color(0xFFFF5449)
+val onError = Color(0xFF680003)
+val errorContainer = Color(0xFF930006)
+val onErrorContainer = Color(0xFFFFDAD4)
+val secondary = Color(0xFF4DD8A5)
+val onSecondary = Color(0xFF003827)
+val secondaryContainer = Color(0xFF00513A)
+val onSecondaryContainer = Color(0xFF74F7C1)
+val tertiary = Color(0xFF5FDBFF)
+val onTertiary = Color(0xFF003544)
+val tertiaryContainer = Color(0xFF004D61)
+val onTertiaryContainer = Color(0xFFB8EAFF)
