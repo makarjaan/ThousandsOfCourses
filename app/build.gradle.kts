@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
 
@@ -40,6 +41,9 @@ android {
 dependencies {
 
     implementation(project(path = ":core:design-system"))
+    implementation(project(path = ":core:navigation"))
+    implementation(project(path = ":core:utils"))
+    implementation(project(path = ":feature:auth:impl"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -56,4 +60,5 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.jetpack.navigation)
 }

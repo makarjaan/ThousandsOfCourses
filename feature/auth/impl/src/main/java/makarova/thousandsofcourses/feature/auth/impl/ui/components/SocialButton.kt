@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.auth.impl.components
+package makarova.thousandsofcourses.feature.auth.impl.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height

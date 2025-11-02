@@ -1,6 +1,5 @@
-package makarova.thousandsofcourses.feature.auth.impl.screen
+package makarova.thousandsofcourses.feature.auth.impl.ui.screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,25 +9,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -36,14 +29,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import makarova.thousandsofcourses.designsystem.AppTheme
 import makarova.thousandsofcourses.feature.auth.impl.R
-import makarova.thousandsofcourses.feature.auth.impl.components.CustomTextField
-import makarova.thousandsofcourses.feature.auth.impl.components.SocialBtn
-import makarova.thousandsofcourses.feature.auth.impl.components.SocialButton
+import makarova.thousandsofcourses.feature.auth.impl.ui.components.CustomTextField
+import makarova.thousandsofcourses.feature.auth.impl.ui.components.SocialBtn
+import makarova.thousandsofcourses.feature.auth.impl.ui.components.SocialButton
+import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthEvent
+import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthState
+
 
 @Composable
 fun AuthScreen(
+    state: AuthState,
+    onEvent: (AuthEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+
     Surface(
         modifier = modifier.fillMaxSize()
     ) {
@@ -65,7 +64,7 @@ fun AuthScreen(
             )
 
             Text(
-                text = "Email",
+                text = stringResource(R.string.text_email),
                 color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
@@ -75,23 +74,23 @@ fun AuthScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             CustomTextField(
-                value = "",
-                onValueChange = {},
+                value = state.login,
+                onValueChange = { onEvent(AuthEvent.OnEmailChanged(it)) },
                 helpText = stringResource(R.string.tf_help_text_example)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             CustomTextField(
-                value = "",
-                onValueChange = {},
+                value = state.password,
+                onValueChange = { onEvent(AuthEvent.OnPasswordChanged(it)) },
                 helpText = stringResource(R.string.tf_help_text_password)
             )
 
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-                onClick = {},
+                onClick = { onEvent(AuthEvent.OnAuthClick) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(40.dp),
@@ -179,13 +178,13 @@ fun AuthScreen(
 }
 
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun AuthPreview() {
     AppTheme {
         AuthScreen(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
+            state = AuthState(login="demo@example.com"),
+            onEvent = {}
         )
     }
 }

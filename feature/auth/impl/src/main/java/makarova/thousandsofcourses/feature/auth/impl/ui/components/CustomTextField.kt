@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.auth.impl.components
+package makarova.thousandsofcourses.feature.auth.impl.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
