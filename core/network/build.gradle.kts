@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.gradle.secrets.plugin)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -30,9 +32,24 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigField(
+            "String",
+            "API_BASE_URL",
+            "\"https://drive.usercontent.google.com\""
+        )
+    }
 }
 
 dependencies {
+
+    implementation(project(path = ":feature:main:api"))
+    implementation(project(path = ":core:utils"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -40,4 +57,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Hilt
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+
+    //Network
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson.converter)
 }

@@ -6,4 +6,6 @@ interface AuthRepository {
 
     suspend fun loginUser(userLoginModel: UserLoginModel)
 
+    suspend fun userInDb(): Boolean
+
 }

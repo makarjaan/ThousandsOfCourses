@@ -12,7 +12,9 @@ class LoginUserUseCaseImpl @Inject constructor(
 ) {
     suspend operator fun invoke(user: UserLoginModel) {
         withContext(ioDispatcher) {
-            authRepository.loginUser(userLoginModel = user)
+            if (!authRepository.userInDb()) {
+                authRepository.loginUser(userLoginModel = user)
+            }
         }
     }
 }

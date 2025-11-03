@@ -38,7 +38,7 @@ dependencies {
 
     implementation(project(path = ":core:design-system"))
     implementation(project(path = ":core:navigation"))
-    implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:database"))
     implementation(project(path = ":feature:auth:api"))
 
     implementation(libs.androidx.core.ktx)

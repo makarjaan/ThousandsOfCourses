@@ -1,15 +1,16 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.feature.auth.api"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "makarova.thousandsofcourses.impl"
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,7 +36,8 @@ android {
 
 dependencies {
 
-    implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:network"))
+    implementation(project(path = ":feature:main:api"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -43,6 +45,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.debug)
+
+    //Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Hilt
     implementation(libs.hilt)

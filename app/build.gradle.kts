@@ -43,6 +43,9 @@ dependencies {
     implementation(project(path = ":core:design-system"))
     implementation(project(path = ":core:navigation"))
     implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:database"))
+    implementation(project(path = ":core:network"))
+
     implementation(project(path = ":feature:auth:impl"))
 
     implementation(libs.androidx.core.ktx)
@@ -61,4 +64,15 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.jetpack.navigation)
+
+    //Room
+    implementation(libs.room)
+    ksp(libs.room.ksp)
+    implementation(libs.room.ktx)
+
+    //Network
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson.converter)
 }

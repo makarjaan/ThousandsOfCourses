@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.feature.auth.api"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "makarova.thousandsofcourses.api"
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,7 +34,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(path = ":core:utils"))
 
     implementation(libs.androidx.core.ktx)
