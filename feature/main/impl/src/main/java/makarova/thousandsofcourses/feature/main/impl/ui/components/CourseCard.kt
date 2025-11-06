@@ -35,12 +35,10 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun CourseCard(
     course: CourseModel,
-    onClick: () -> Unit,
-    onBookmarkClick: () -> Unit,
+    onCourseLiked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
-        onClick = onClick,
         color = MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(16.dp),
         modifier = modifier
@@ -74,7 +72,7 @@ fun CourseCard(
                 }
 
                 GlassCircleButton(
-                    onClick = onBookmarkClick,
+                    onClick = { onCourseLiked(course.id) },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
@@ -88,8 +86,7 @@ fun CourseCard(
             }
 
             Column(modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = 16.dp)
+                .padding(16.dp)
                 .fillMaxWidth()) {
                 Text(
                     text = course.title,
@@ -109,6 +106,8 @@ fun CourseCard(
                     overflow = TextOverflow.Ellipsis
                 )
 
+                Spacer(Modifier.height(10.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
@@ -120,7 +119,7 @@ fun CourseCard(
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
-                    TextButton(onClick = onClick) {
+                    Row {
                         Text(
                             text = stringResource(R.string.text_more),
                             color = MaterialTheme.colorScheme.primary,
@@ -227,7 +226,6 @@ private fun PreviewCourses() {
             rate = 4.9,
             hasLike = false,
             publishDate = "22222"),
-        onClick = {},
-        onBookmarkClick = {}
+        onCourseLiked = {}
     )
 }

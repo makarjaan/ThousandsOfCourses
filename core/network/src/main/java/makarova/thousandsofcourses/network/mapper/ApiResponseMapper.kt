@@ -2,12 +2,13 @@ package makarova.thousandsofcourses.network.mapper
 
 import makarova.thousandsofcourses.api.model.CourseModel
 import makarova.thousandsofcourses.network.response.CoursesResponse
+import makarova.thousandsofcourses.network.response.CoursesResponseItem
 import makarova.thousandsofcourses.utils.Constants
 import javax.inject.Inject
 
 class ApiResponseMapper @Inject constructor() {
 
-    fun mapToCourse(input: CoursesResponse?): CourseModel {
+    fun mapToCourse(input: CoursesResponseItem?): CourseModel {
         return input?.let {
             CourseModel(
                 id = it.id ?: Constants.EMPTY_STRING,
@@ -22,7 +23,7 @@ class ApiResponseMapper @Inject constructor() {
         } ?: CourseModel.EMPTY
     }
 
-    fun mapToListCourses(input: List<CoursesResponse>?): List<CourseModel> {
-        return input?.mapNotNull { mapToCourse(it) } ?: emptyList()
+    fun mapToListCourses(input: CoursesResponse?): List<CourseModel> {
+        return input?.courses?.map { course -> mapToCourse(course) } ?: emptyList()
     }
 }

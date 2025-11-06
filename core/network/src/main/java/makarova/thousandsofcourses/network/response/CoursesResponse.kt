@@ -2,7 +2,7 @@ package makarova.thousandsofcourses.network.response
 
 import com.google.gson.annotations.SerializedName
 
-class CoursesResponse (
+data class CoursesResponseItem (
     @SerializedName("id")
     val id: String?,
     @SerializedName("title")
@@ -19,4 +19,9 @@ class CoursesResponse (
     val hasLike: Boolean?,
     @SerializedName("publishDate")
     val publishDate: String?
+)
+
+data class CoursesResponse(
+    @SerializedName("courses")
+    val courses: List<CoursesResponseItem>
 )

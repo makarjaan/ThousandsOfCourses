@@ -75,6 +75,7 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 loginUserUseCase.invoke(_uiState.value.login, _uiState.value.password)
+                _effects.emit(AuthEffect.NavigateToNext)
             } catch (e: Exception) {
                 _effects.emit(AuthEffect.ShowError(e))
             }

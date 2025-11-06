@@ -26,7 +26,10 @@ import makarova.thousandsofcourses.feature.main.impl.R
 
 
 @Composable
-fun SearchWithFilter(modifier: Modifier = Modifier) {
+fun SearchWithFilter(
+    onFilterClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
@@ -67,7 +70,7 @@ fun SearchWithFilter(modifier: Modifier = Modifier) {
         ) {
 
             IconButton(
-                onClick = { /* open filters */ },
+                onClick = onFilterClick,
                 modifier = Modifier.size(56.dp))
             {
                 Icon(

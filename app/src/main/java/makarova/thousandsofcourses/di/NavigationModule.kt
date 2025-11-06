@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import makarova.thousandsofcourses.feature.auth.impl.navigation.AuthScreenRegistrationImpl
+import makarova.thousandsofcourses.feature.main.impl.navigation.MainScreenRegistrationImpl
 import makarova.thousandsofcourses.navigation.ScreenRegistration
 
 @Module
@@ -15,4 +16,8 @@ object NavigationModule {
     @Provides
     @IntoSet
     fun provideAuthRegistration(): ScreenRegistration = AuthScreenRegistrationImpl()
+
+    @Provides
+    @IntoSet
+    fun provideMainRegistration(): ScreenRegistration = MainScreenRegistrationImpl()
 }

@@ -1,24 +1,28 @@
-package makarova.thousandsofcourses.feature.auth.impl.ui.screen
+package makarova.thousandsofcourses.feature.main.impl.ui.screen
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
-import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthEffect
-import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthViewModel
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import makarova.thousandsofcourses.feature.auth.api.widget.SnackbarError
+import makarova.thousandsofcourses.feature.main.impl.presentation.MainEffect
+import makarova.thousandsofcourses.feature.main.impl.presentation.MainViewModel
+import makarova.thousandsofcourses.utils.R
+
 
 @Composable
-fun AuthRoute(
-    onLoginSuccess: () -> Unit,
+fun MainRoute(
     modifier: Modifier = Modifier,
+    onFilterChanged: () -> Unit,
+    onCourseLiked: (String) -> Unit
 ) {
-    val viewModel: AuthViewModel = hiltViewModel()
+
+    val viewModel: MainViewModel = hiltViewModel()
 
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -27,20 +31,19 @@ fun AuthRoute(
     LaunchedEffect(Unit) {
         viewModel.effects.collect { eff ->
             when (eff) {
-                is AuthEffect.ShowError -> {
+                is MainEffect.ShowError -> {
                     val errorMessage =
-                        eff.throwable.message ?: context.getString(makarova.thousandsofcourses.utils.R.string.error_unknown)
+                        eff.throwable.message ?: context.getString(R.string.error_unknown)
                     snackbar.showSnackbar(message = errorMessage)
                 }
-                AuthEffect.NavigateToNext -> onLoginSuccess()
             }
         }
     }
 
-    AuthScreen(
-        state = state,
-        onEvent = viewModel::reduce,
-        modifier = modifier
+    MainScreen(
+        courses = state.list,
+        onCourseLiked = onCourseLiked,
+        onFilterClick = onFilterChanged
     )
 
     SnackbarError(snackbar)

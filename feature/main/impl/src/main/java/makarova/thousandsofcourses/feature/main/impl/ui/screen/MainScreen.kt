@@ -30,10 +30,10 @@ import makarova.thousandsofcourses.feature.main.impl.ui.components.SearchWithFil
 
 @Composable
 fun MainScreen(
+    onFilterClick: () -> Unit,
+    onCourseLiked: (String) -> Unit,
+    courses: List<CourseModel>,
     modifier: Modifier = Modifier,
-    onSearchClick: () -> Unit = {},
-    onFilterClick: () -> Unit = {},
-    courses: List<CourseModel>
 ) {
 
     Column(
@@ -43,7 +43,7 @@ fun MainScreen(
             .padding(top = 16.dp)
     ) {
 
-        SearchWithFilter()
+        SearchWithFilter(onFilterClick = onFilterClick)
 
         Spacer(Modifier.height(16.dp))
 
@@ -75,12 +75,10 @@ fun MainScreen(
             items(courses.size, key = { courses[it].id }) { index ->
                 CourseCard(
                     course = courses[index],
-                    onClick = {},
-                    onBookmarkClick = {}
+                    onCourseLiked = onCourseLiked
                 )
             }
         }
-
     }
 }
 
@@ -90,7 +88,7 @@ fun MainScreen(
 @Composable
 private fun MainPreview() {
     AppTheme {
-        MainScreen(courses = demoCourses)
+        MainScreen(courses = demoCourses, onCourseLiked = {}, onFilterClick = {})
     }
 }
 

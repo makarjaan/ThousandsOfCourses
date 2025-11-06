@@ -37,8 +37,11 @@ android {
 dependencies {
 
     implementation(project(path = ":core:network"))
+    implementation(project(path = ":core:navigation"))
+    implementation(project(path = ":core:utils"))
     implementation(project(path = ":core:design-system"))
     implementation(project(path = ":feature:main:api"))
+    implementation(project(path = ":feature:auth:api"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

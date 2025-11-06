@@ -15,7 +15,7 @@ fun MainNavGraph(
         startDestination = "auth"
     ) {
         screenRegistration.forEach { registration ->
-            registration.registerScreens(this)
+            registration.registerScreens(this, navController)
         }
     }
 }

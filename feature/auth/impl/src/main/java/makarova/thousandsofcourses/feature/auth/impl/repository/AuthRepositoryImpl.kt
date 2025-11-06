@@ -16,7 +16,8 @@ class AuthRepositoryImpl @Inject constructor(
         userDao.saveUser(userEntity)
     }
 
-    override suspend fun userInDb(): Boolean {
-        return userDao.getUsersCount() > 0
+    override suspend fun deleteUser() {
+        userDao.deleteAllUser()
     }
+
 }
