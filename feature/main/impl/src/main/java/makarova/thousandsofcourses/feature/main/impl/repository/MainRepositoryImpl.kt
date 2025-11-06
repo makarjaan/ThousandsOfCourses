@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.impl.repository
+package makarova.thousandsofcourses.feature.main.impl.repository
 
 import makarova.thousandsofcourses.api.model.CourseModel
 import makarova.thousandsofcourses.api.repository.MainRepository

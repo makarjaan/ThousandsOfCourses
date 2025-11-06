@@ -44,8 +44,11 @@ retrofit = "2.11.0"
 # AndroidX core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+# Material
+androidx-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core"}
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # Tests
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -102,6 +105,8 @@ compose = [
     "androidx-ui-runtime",
     "androidx-ui-foundation",
     "androidx-material3",
+    "androidx-material-iconsExtended",
+    "androidx-material-iconsCore",
 ]
 
 compose-debug = [

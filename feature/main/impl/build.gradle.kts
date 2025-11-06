@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.impl"
-    compileSdk = 36
+    namespace = "makarova.thousandsofcourses.feature.main.impl"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,6 +37,7 @@ android {
 dependencies {
 
     implementation(project(path = ":core:network"))
+    implementation(project(path = ":core:design-system"))
     implementation(project(path = ":feature:main:api"))
 
     implementation(libs.androidx.core.ktx)

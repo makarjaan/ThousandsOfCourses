@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="search_tf">Search courses...</string>
+    <string name="text_filter">По дате добавления</string>
+    <string name="text_more">Подробнее</string>
+
+</resources>
