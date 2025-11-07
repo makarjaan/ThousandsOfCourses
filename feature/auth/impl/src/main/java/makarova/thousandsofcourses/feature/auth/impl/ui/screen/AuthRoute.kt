@@ -11,7 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthEffect
 import makarova.thousandsofcourses.feature.auth.impl.presentation.AuthViewModel
 import androidx.compose.runtime.getValue
-import makarova.thousandsofcourses.feature.auth.api.widget.SnackbarError
+import makarova.thousandsofcourses.designsystem.uicomponents.SnackbarError
 
 @Composable
 fun AuthRoute(

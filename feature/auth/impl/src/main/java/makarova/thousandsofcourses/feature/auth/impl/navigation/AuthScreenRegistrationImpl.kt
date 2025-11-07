@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import makarova.thousandsofcourses.feature.auth.impl.ui.screen.AuthRoute
 import makarova.thousandsofcourses.navigation.ScreenRegistration
+import makarova.thousandsofcourses.utils.Routes
 
 class AuthScreenRegistrationImpl: ScreenRegistration {
 
@@ -12,10 +13,10 @@ class AuthScreenRegistrationImpl: ScreenRegistration {
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController
     ) {
-        navGraphBuilder.composable("auth") {
+        navGraphBuilder.composable(Routes.AUTH) {
             AuthRoute(
                 onLoginSuccess = {
-                    navController.navigate("main") 
+                    navController.navigate(Routes.MAIN)
                 }
             )
         }

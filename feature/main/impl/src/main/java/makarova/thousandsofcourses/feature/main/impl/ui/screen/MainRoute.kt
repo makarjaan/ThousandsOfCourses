@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import makarova.thousandsofcourses.feature.auth.api.widget.SnackbarError
+import makarova.thousandsofcourses.designsystem.uicomponents.SnackbarError
 import makarova.thousandsofcourses.feature.main.impl.presentation.MainEffect
 import makarova.thousandsofcourses.feature.main.impl.presentation.MainViewModel
 import makarova.thousandsofcourses.utils.R

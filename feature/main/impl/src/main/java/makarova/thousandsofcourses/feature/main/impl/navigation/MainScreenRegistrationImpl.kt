@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import makarova.thousandsofcourses.feature.main.impl.ui.screen.MainRoute
 import makarova.thousandsofcourses.navigation.ScreenRegistration
+import makarova.thousandsofcourses.utils.Routes
 
 class MainScreenRegistrationImpl: ScreenRegistration {
 
@@ -12,7 +13,7 @@ class MainScreenRegistrationImpl: ScreenRegistration {
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController
     ) {
-        navGraphBuilder.composable("main") {
+        navGraphBuilder.composable(Routes.MAIN) {
             MainRoute(
                 onFilterChanged = {},
                 onCourseLiked = {}

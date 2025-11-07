@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+
+    implementation(project(path = ":core:utils"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
@@ -48,4 +51,5 @@ dependencies {
     //Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.jetpack.navigation)
 }

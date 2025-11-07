@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.auth.api.widget
+package makarova.thousandsofcourses.designsystem.uicomponents
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
