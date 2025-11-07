@@ -6,7 +6,9 @@ import makarova.thousandsofcourses.api.model.CourseModel
 @Immutable
 data class MainState (
     val list: List<CourseModel> = emptyList(),
-    val isLoading: Boolean = false
+    val originalList: List<CourseModel> = emptyList(),
+    val isLoading: Boolean = false,
+    val isSortedDescending: Boolean = false
 )
 
 sealed class MainEvent {

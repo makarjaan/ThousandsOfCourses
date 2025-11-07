@@ -14,10 +14,7 @@ class MainScreenRegistrationImpl: ScreenRegistration {
         navController: NavHostController
     ) {
         navGraphBuilder.composable(Routes.MAIN) {
-            MainRoute(
-                onFilterChanged = {},
-                onCourseLiked = {}
-            )
+            MainRoute()
         }
     }
 }

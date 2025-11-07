@@ -1,5 +1,6 @@
 package makarova.thousandsofcourses.feature.main.impl.ui.screen
 
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,10 +17,7 @@ import makarova.thousandsofcourses.utils.R
 
 
 @Composable
-fun MainRoute(
-    onFilterChanged: () -> Unit,
-    onCourseLiked: (String) -> Unit
-) {
+fun MainRoute() {
 
     val viewModel: MainViewModel = hiltViewModel()
 
@@ -41,8 +39,7 @@ fun MainRoute(
 
     MainScreen(
         courses = state.list,
-        onCourseLiked = onCourseLiked,
-        onFilterClick = onFilterChanged
+        onEvent = viewModel::reduce,
     )
 
     if (state.isLoading) {

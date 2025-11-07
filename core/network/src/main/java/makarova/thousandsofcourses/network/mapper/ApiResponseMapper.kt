@@ -22,7 +22,7 @@ class ApiResponseMapper @Inject constructor() {
                 rate = it.rate ?: Constants.EMPTY_DOUBLE,
                 startDate = getFormatDate(it.startDate),
                 hasLike = it.hasLike ?: false,
-                publishDate = getFormatDate(it.startDate)
+                publishDate = it.publishDate ?: Constants.EMPTY_STRING
             )
         } ?: CourseModel.EMPTY
     }

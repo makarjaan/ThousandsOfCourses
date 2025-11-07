@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import makarova.thousandsofcourses.api.usecase.GetListOfCoursesUseCase
 import javax.inject.Inject
 
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getListOfCoursesUseCase: GetListOfCoursesUseCase
@@ -35,7 +36,21 @@ class MainViewModel @Inject constructor(
     }
 
     private fun onFilterClick() {
+        with(_uiState.value) {
+            if (list.isEmpty()) return
 
+            val sortedList = if (isSortedDescending) {
+               originalList
+            } else {
+               list.sortedByDescending { course ->
+                    course.publishDate
+               }
+            }
+
+            _uiState.update {
+                it.copy(list = sortedList, isSortedDescending = !isSortedDescending)
+            }
+        }
     }
 
     private fun onCourseLiked(course: String) {
@@ -48,12 +63,11 @@ class MainViewModel @Inject constructor(
             try {
                 val list = getListOfCoursesUseCase.invoke()
                 _uiState.update {
-                    it.copy(list = list, isLoading = false)
+                    it.copy(list = list, originalList = list, isLoading = false)
                 }
             } catch (e: Exception) {
                 _effects.emit(MainEffect.ShowError(e))
             }
         }
     }
-
 }
