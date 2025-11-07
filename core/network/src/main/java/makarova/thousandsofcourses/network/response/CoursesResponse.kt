@@ -1,6 +1,10 @@
 package makarova.thousandsofcourses.network.response
 
 import com.google.gson.annotations.SerializedName
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+
 
 data class CoursesResponseItem (
     @SerializedName("id")

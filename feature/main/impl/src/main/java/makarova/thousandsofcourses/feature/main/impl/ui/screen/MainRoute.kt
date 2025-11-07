@@ -4,7 +4,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -12,12 +11,12 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import makarova.thousandsofcourses.designsystem.uicomponents.SnackbarError
 import makarova.thousandsofcourses.feature.main.impl.presentation.MainEffect
 import makarova.thousandsofcourses.feature.main.impl.presentation.MainViewModel
+import makarova.thousandsofcourses.feature.main.impl.ui.components.Loading
 import makarova.thousandsofcourses.utils.R
 
 
 @Composable
 fun MainRoute(
-    modifier: Modifier = Modifier,
     onFilterChanged: () -> Unit,
     onCourseLiked: (String) -> Unit
 ) {
@@ -45,6 +44,10 @@ fun MainRoute(
         onCourseLiked = onCourseLiked,
         onFilterClick = onFilterChanged
     )
+
+    if (state.isLoading) {
+        Loading()
+    }
 
     SnackbarError(snackbar)
 }

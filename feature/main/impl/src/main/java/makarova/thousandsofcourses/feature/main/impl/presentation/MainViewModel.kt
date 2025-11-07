@@ -43,11 +43,12 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getCourseList() {
+        _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             try {
                 val list = getListOfCoursesUseCase.invoke()
                 _uiState.update {
-                    it.copy(list = list)
+                    it.copy(list = list, isLoading = false)
                 }
             } catch (e: Exception) {
                 _effects.emit(MainEffect.ShowError(e))

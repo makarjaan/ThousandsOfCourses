@@ -39,8 +39,7 @@ fun CourseCard(
         color = MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(16.dp),
         modifier = modifier
-            .fillMaxWidth(),
-        tonalElevation = 1.dp
+            .fillMaxWidth()
     ) {
         Column {
             Box(
