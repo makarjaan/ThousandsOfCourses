@@ -3,7 +3,7 @@ package makarova.thousandsofcourses.api.model
 import makarova.thousandsofcourses.utils.Constants
 
 data class CourseModel (
-    val id: String,
+    val id: Long,
     val title: String,
     val text: String,
     val price: String,
@@ -14,7 +14,7 @@ data class CourseModel (
 ) {
     companion object {
         val EMPTY = CourseModel(
-            id = Constants.EMPTY_STRING,
+            id = 0,
             title = Constants.EMPTY_STRING,
             text = Constants.EMPTY_STRING,
             price = Constants.EMPTY_STRING,

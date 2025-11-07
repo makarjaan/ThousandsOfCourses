@@ -9,7 +9,10 @@ import javax.inject.Singleton
 import android.content.Context
 import androidx.room.Room
 import makarova.thousandsofcourses.database.AppDataBase
+import makarova.thousandsofcourses.database.dao.CourseDao
 import makarova.thousandsofcourses.database.dao.UserDao
+import makarova.thousandsofcourses.database.dao.UserFavoriteCoursesDao
+import makarova.thousandsofcourses.database.migrations.Migration_1_2
 import makarova.thousandsofcourses.network.Api
 import makarova.thousandsofcourses.network.BuildConfig
 import okhttp3.OkHttpClient
@@ -26,11 +29,20 @@ class DataModule {
     @Singleton
     fun provideDb(@ApplicationContext context: Context) : AppDataBase = Room
         .databaseBuilder(context, AppDataBase::class.java, AppDataBase.DB_LOG_KEY)
+        .addMigrations(Migration_1_2())
         .build()
 
     @Provides
     @Singleton
     fun provideUserDao(db: AppDataBase) : UserDao = db.userDao
+
+    @Provides
+    @Singleton
+    fun provideCourseDao(db: AppDataBase): CourseDao = db.courseDao
+
+    @Provides
+    @Singleton
+    fun provideUserFavoriteCoursesDao(db: AppDataBase): UserFavoriteCoursesDao = db.userFavoriteCoursesDao
 
     @Provides
     @Singleton

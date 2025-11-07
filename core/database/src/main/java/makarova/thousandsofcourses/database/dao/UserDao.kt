@@ -17,4 +17,7 @@ interface UserDao {
 
     @Query("DELETE FROM users")
     suspend fun deleteAllUser()
+
+    @Query("SELECT id FROM users LIMIT 1")
+    suspend fun getCurrentUserId(): Long?
 }

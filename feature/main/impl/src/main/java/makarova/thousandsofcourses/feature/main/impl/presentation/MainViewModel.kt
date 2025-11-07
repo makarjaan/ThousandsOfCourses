@@ -10,12 +10,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import makarova.thousandsofcourses.api.usecase.GetListOfCoursesUseCase
+import makarova.thousandsofcourses.api.usecase.ToggleFavoriteUseCase
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getListOfCoursesUseCase: GetListOfCoursesUseCase
+    private val getListOfCoursesUseCase: GetListOfCoursesUseCase,
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow(MainState())
@@ -30,7 +32,7 @@ class MainViewModel @Inject constructor(
 
     fun reduce(event: MainEvent) {
         when (event) {
-            is MainEvent.OnFilterClick -> { onFilterClick() }
+            is MainEvent.OnFilterClick -> onFilterClick()
             is MainEvent.OnCourseLiked -> onCourseLiked(event.course)
         }
     }
@@ -53,8 +55,39 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun onCourseLiked(course: String) {
+    private fun onCourseLiked(courseId: Long) {
+        viewModelScope.launch {
+            try {
+                val course = _uiState.value.list.find { it.id == courseId }
+                course?.let {
+                    toggleFavoriteUseCase(it)
+                    updateCourseFavoriteStatus(courseId)
+                }
+            } catch (e: Exception) {
+                _effects.emit(MainEffect.ShowError(e))
+            }
+        }
+    }
 
+    private suspend fun updateCourseFavoriteStatus(courseId: Long) {
+        _uiState.update { state ->
+            state.copy(
+                list = state.list.map { course ->
+                    if (course.id == courseId) {
+                        course.copy(hasLike = !course.hasLike)
+                    } else {
+                        course
+                    }
+                },
+                originalList = state.originalList.map { course ->
+                    if (course.id == courseId) {
+                        course.copy(hasLike = !course.hasLike)
+                    } else {
+                        course
+                    }
+                }
+            )
+        }
     }
 
     private fun getCourseList() {

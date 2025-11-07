@@ -15,7 +15,7 @@ class ApiResponseMapper @Inject constructor() {
     fun mapToCourse(input: CoursesResponseItem?): CourseModel {
         return input?.let {
             CourseModel(
-                id = it.id ?: Constants.EMPTY_STRING,
+                id = it.id ?: 0,
                 title = it.title ?: Constants.EMPTY_STRING,
                 text = it.text ?: Constants.EMPTY_STRING,
                 price = it.price ?: Constants.EMPTY_STRING,

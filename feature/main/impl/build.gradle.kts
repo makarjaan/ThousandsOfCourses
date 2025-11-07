@@ -39,6 +39,7 @@ dependencies {
     implementation(project(path = ":core:network"))
     implementation(project(path = ":core:navigation"))
     implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:database"))
     implementation(project(path = ":core:design-system"))
     implementation(project(path = ":feature:main:api"))
 

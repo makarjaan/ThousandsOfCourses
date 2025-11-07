@@ -32,7 +32,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun CourseCard(
     course: CourseModel,
-    onCourseLiked: (String) -> Unit,
+    onCourseLiked: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -214,7 +214,7 @@ private fun DateChip(startDate: String) {
 private fun PreviewCourses() {
     CourseCard(
         course = CourseModel(
-            id = "1",
+            id = 1,
             title = "Java-разработчик с нуля",
             text = "Освойте backend-разработку и программирование на Java, фреймворки...",
             price = "999 ₽",

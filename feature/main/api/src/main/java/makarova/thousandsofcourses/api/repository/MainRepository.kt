@@ -6,4 +6,5 @@ interface MainRepository {
 
     suspend fun getCourses(): List<CourseModel>
 
+    suspend fun toggleFavorite(course: CourseModel)
 }

@@ -13,7 +13,7 @@ data class MainState (
 
 sealed class MainEvent {
     object OnFilterClick: MainEvent()
-    data class OnCourseLiked(val course: String): MainEvent()
+    data class OnCourseLiked(val course: Long): MainEvent()
 }
 
 sealed class MainEffect {

@@ -113,7 +113,7 @@ private fun MainPreview() {
 
 val demoCourses = listOf(
     CourseModel(
-        id = "1",
+        id = 1,
         title = "Java-разработчик с нуля",
         text = "Освойте backend-разработку и программирование на Java, фреймворки...",
         price= "999 ₽",
@@ -123,7 +123,7 @@ val demoCourses = listOf(
         hasLike = false
     ),
     CourseModel(
-        id = "2",
+        id = 2,
         title = "3D-дженералист",
         text = "Освой профессию 3D-дженералиста и стань универсальным специалистом...",
         price = "12 000 ₽",

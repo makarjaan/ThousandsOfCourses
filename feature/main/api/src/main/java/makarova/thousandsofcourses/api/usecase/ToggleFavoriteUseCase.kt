@@ -1,0 +1,18 @@
+package makarova.thousandsofcourses.api.usecase
+
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
+import makarova.thousandsofcourses.api.model.CourseModel
+import makarova.thousandsofcourses.api.repository.MainRepository
+import javax.inject.Inject
+
+class ToggleFavoriteUseCase @Inject constructor(
+    private val mainRepository: MainRepository,
+    private val ioDispatcher: CoroutineDispatcher
+) {
+    suspend operator fun invoke(course: CourseModel) {
+        return withContext(ioDispatcher) {
+            mainRepository.toggleFavorite(course)
+        }
+    }
+}
