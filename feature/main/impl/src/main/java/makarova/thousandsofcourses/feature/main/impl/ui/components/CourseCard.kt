@@ -74,9 +74,19 @@ fun CourseCard(
                         .padding(8.dp)
                 ) {
                     Icon(
-                        painter = painterResource(R.drawable.ic_bookmark),
+                        painter = painterResource(
+                            if (course.hasLike) {
+                                R.drawable.ic_bookmark_filled
+                            } else {
+                                R.drawable.ic_bookmark
+                            }
+                        ),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = if (course.hasLike) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.onBackground
+                        }
                     )
                 }
             }
