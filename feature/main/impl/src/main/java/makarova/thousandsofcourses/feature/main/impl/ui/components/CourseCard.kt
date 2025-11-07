@@ -24,9 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import makarova.thousandsofcourses.api.model.CourseModel
 import makarova.thousandsofcourses.feature.main.impl.R
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.TextButton
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.material.icons.Icons
 import androidx.compose.ui.res.stringResource

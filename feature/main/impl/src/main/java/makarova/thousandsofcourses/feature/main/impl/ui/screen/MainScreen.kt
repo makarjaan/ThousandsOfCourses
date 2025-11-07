@@ -37,7 +37,7 @@ fun MainScreen(
 ) {
 
     Column(
-        Modifier
+        modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
             .padding(top = 16.dp)
@@ -66,7 +66,7 @@ fun MainScreen(
             )
         }
 
-        Spacer(Modifier.width(16.dp))
+        Spacer(Modifier.height(16.dp))
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

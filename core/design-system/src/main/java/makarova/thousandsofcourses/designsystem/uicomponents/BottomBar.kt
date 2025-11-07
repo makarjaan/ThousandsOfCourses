@@ -52,10 +52,11 @@ fun BottomBar(
                     unselectedIconColor = MaterialTheme.colorScheme.onSurface,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     unselectedTextColor = MaterialTheme.colorScheme.onSurface,
-                    indicatorColor = Color.Transparent
+                    indicatorColor = MaterialTheme.colorScheme.surfaceVariant
                 ),
                 label = { Text(
-                    text = screen.label
+                    text = screen.label,
+                    style = MaterialTheme.typography.labelMedium
                 )}
             )
         }
