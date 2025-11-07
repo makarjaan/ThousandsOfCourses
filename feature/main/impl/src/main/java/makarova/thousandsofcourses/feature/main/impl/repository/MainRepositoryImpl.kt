@@ -1,8 +1,7 @@
 package makarova.thousandsofcourses.feature.main.impl.repository
 
-import android.util.Log
-import makarova.thousandsofcourses.api.model.CourseModel
-import makarova.thousandsofcourses.api.repository.MainRepository
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.repository.MainRepository
 import makarova.thousandsofcourses.database.dao.CourseDao
 import makarova.thousandsofcourses.database.dao.UserDao
 import makarova.thousandsofcourses.database.dao.UserFavoriteCoursesDao

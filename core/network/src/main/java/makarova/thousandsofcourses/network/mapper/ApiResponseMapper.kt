@@ -1,6 +1,6 @@
 package makarova.thousandsofcourses.network.mapper
 
-import makarova.thousandsofcourses.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
 import makarova.thousandsofcourses.network.response.CoursesResponse
 import makarova.thousandsofcourses.network.response.CoursesResponseItem
 import makarova.thousandsofcourses.utils.Constants

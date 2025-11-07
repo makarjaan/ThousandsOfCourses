@@ -20,4 +20,7 @@ interface CourseDao {
     
     @Query("SELECT * FROM courses")
     suspend fun getAllCourses(): List<CourseEntity>
+
+    @Query("SELECT * FROM courses WHERE id IN (:courseIds)")
+    suspend fun getCoursesByIds(courseIds: List<Long>): List<CourseEntity>
 }

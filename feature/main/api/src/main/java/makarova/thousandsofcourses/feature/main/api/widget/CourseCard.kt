@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.main.impl.ui.components
+package makarova.thousandsofcourses.feature.main.api.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,11 +22,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import makarova.thousandsofcourses.api.model.CourseModel
-import makarova.thousandsofcourses.feature.main.impl.R
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.material.icons.Icons
 import androidx.compose.ui.res.stringResource
+import makarova.thousandsofcourses.feature.main.api.R
+
 
 
 @Composable

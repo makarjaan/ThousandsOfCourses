@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.api.model
+package makarova.thousandsofcourses.feature.main.api.model
 
 import makarova.thousandsofcourses.utils.Constants
 

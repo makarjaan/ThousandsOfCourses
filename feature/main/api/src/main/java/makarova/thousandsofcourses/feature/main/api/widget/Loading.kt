@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.main.impl.ui.components
+package makarova.thousandsofcourses.feature.main.api.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

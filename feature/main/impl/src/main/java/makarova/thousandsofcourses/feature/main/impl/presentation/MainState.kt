@@ -1,7 +1,7 @@
 package makarova.thousandsofcourses.feature.main.impl.presentation
 
 import androidx.compose.runtime.Immutable
-import makarova.thousandsofcourses.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
 
 @Immutable
 data class MainState (

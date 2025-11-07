@@ -1,6 +1,6 @@
 package makarova.thousandsofcourses.database.mapper
 
-import makarova.thousandsofcourses.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
 import makarova.thousandsofcourses.database.entities.CourseEntity
 import makarova.thousandsofcourses.database.entities.UserEntity
 import makarova.thousandsofcourses.database.entities.UserFavoriteCoursesEntity

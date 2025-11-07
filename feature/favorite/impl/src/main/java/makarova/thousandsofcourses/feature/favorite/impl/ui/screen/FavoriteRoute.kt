@@ -1,4 +1,4 @@
-package makarova.thousandsofcourses.feature.main.impl.ui.screen
+package makarova.thousandsofcourses.feature.favorite.impl.ui.screen
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -8,17 +8,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import makarova.thousandsofcourses.designsystem.uicomponents.SnackbarError
-import makarova.thousandsofcourses.feature.main.impl.presentation.MainEffect
-import makarova.thousandsofcourses.feature.main.impl.presentation.MainViewModel
 import makarova.thousandsofcourses.feature.main.api.widget.Loading
+import makarova.thousandsofcourses.designsystem.uicomponents.SnackbarError
+import makarova.thousandsofcourses.feature.favorite.impl.presentation.FavoriteEffect
+import makarova.thousandsofcourses.feature.favorite.impl.presentation.FavoriteViewModel
 import makarova.thousandsofcourses.utils.R
 
-
 @Composable
-fun MainRoute() {
-
-    val viewModel: MainViewModel = hiltViewModel()
+fun FavoriteRoute() {
+    val viewModel: FavoriteViewModel = hiltViewModel()
 
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -27,7 +25,7 @@ fun MainRoute() {
     LaunchedEffect(Unit) {
         viewModel.effects.collect { eff ->
             when (eff) {
-                is MainEffect.ShowError -> {
+                is FavoriteEffect.ShowError -> {
                     val errorMessage =
                         eff.throwable.message ?: context.getString(R.string.error_unknown)
                     snackbar.showSnackbar(message = errorMessage)
@@ -36,9 +34,9 @@ fun MainRoute() {
         }
     }
 
-    MainScreen(
-        courses = state.list,
+    FavoriteScreen(
         onEvent = viewModel::reduce,
+        courses = state.list
     )
 
     if (state.isLoading) {

@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import makarova.thousandsofcourses.api.usecase.GetListOfCoursesUseCase
-import makarova.thousandsofcourses.api.usecase.ToggleFavoriteUseCase
+import makarova.thousandsofcourses.feature.main.api.usecase.GetListOfCoursesUseCase
+import makarova.thousandsofcourses.feature.main.api.usecase.ToggleFavoriteUseCase
 import javax.inject.Inject
 
 
@@ -69,7 +69,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private suspend fun updateCourseFavoriteStatus(courseId: Long) {
+    private fun updateCourseFavoriteStatus(courseId: Long) {
         _uiState.update { state ->
             state.copy(
                 list = state.list.map { course ->

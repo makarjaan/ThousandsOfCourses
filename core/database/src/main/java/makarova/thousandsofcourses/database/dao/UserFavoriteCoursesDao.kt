@@ -22,4 +22,7 @@ interface UserFavoriteCoursesDao {
     @Query("SELECT COUNT(*) FROM user_favorites_courses" +
             " WHERE user_id = :userId AND course_id = :courseId")
     suspend fun isCourseFavorite(userId: Long, courseId: Long): Boolean
+
+    @Query("SELECT course_id FROM user_favorites_courses WHERE user_id = :userId")
+    suspend fun getFavoriteCoursesByUserId(userId: Long): List<Long>
 }

@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,9 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import makarova.thousandsofcourses.designsystem.AppTheme
 import androidx.compose.ui.res.painterResource
-import makarova.thousandsofcourses.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
 import makarova.thousandsofcourses.feature.main.impl.presentation.MainEvent
-import makarova.thousandsofcourses.feature.main.impl.ui.components.CourseCard
+import makarova.thousandsofcourses.feature.main.api.widget.CourseCard
 import makarova.thousandsofcourses.feature.main.impl.ui.components.SearchWithFilter
 
 

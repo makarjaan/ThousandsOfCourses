@@ -7,5 +7,6 @@
     <string name="text_no_acc">Нет аккаунта?</string>
     <string name="text_register">Регистрация</string>
     <string name="text_forgot_pass">Забыл пароль</string>
+    <string name="text_error">Введите корректный email</string>
     <string name="check_login">Проверьте соответствует ли почта маске “текст@текст.текст”</string>
 </resources>

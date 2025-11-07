@@ -1,9 +1,9 @@
-package makarova.thousandsofcourses.api.usecase
+package makarova.thousandsofcourses.feature.main.api.usecase
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import makarova.thousandsofcourses.api.model.CourseModel
-import makarova.thousandsofcourses.api.repository.MainRepository
+import makarova.thousandsofcourses.feature.main.api.model.CourseModel
+import makarova.thousandsofcourses.feature.main.api.repository.MainRepository
 import javax.inject.Inject
 
 class GetListOfCoursesUseCase @Inject constructor(
