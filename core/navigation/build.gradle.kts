@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.navigation"
+    namespace = "makarova.citypulse.navigation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

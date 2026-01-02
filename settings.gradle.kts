@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ThousandsOfCourses"
+rootProject.name = "CityPulse"
 include(":app")
 include(":feature")
 include(":feature:auth")

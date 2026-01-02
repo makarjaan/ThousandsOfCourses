@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses"
+    namespace = "makarova.citypulse"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "makarova.thousandsofcourses"
+        applicationId = "makarova.citypulse"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = rootProject.extra.get("versionCode") as Int
@@ -47,8 +47,6 @@ dependencies {
     implementation(project(path = ":core:network"))
 
     implementation(project(path = ":feature:auth:impl"))
-    implementation(project(path = ":feature:main:impl"))
-    implementation(project(path = ":feature:favorite:impl"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.designsystem"
+    namespace = "makarova.citypulse.designsystem"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.feature.auth.impl"
+    namespace = "makarova.citypulse.feature.auth.impl"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

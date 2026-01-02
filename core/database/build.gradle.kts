@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.database"
+    namespace = "makarova.citypulse.database"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -13,8 +13,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        buildConfigField("int", "DB_VERSION", "1")
     }
 
     buildTypes {
@@ -44,9 +42,6 @@ android {
 }
 
 dependencies {
-
-    implementation(project(path = ":feature:auth:api"))
-    implementation(project(path = ":feature:main:api"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

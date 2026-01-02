@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.utils"
+    namespace = "makarova.citypulse.utils"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

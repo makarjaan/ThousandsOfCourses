@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "makarova.thousandsofcourses.network"
+    namespace = "makarova.citypulse.network"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -48,7 +48,6 @@ android {
 
 dependencies {
 
-    implementation(project(path = ":feature:main:api"))
     implementation(project(path = ":core:utils"))
 
     implementation(libs.androidx.core.ktx)
