@@ -58,4 +58,9 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+
+    //Security
+    implementation(libs.androidx.security)
+    implementation(libs.jwt)
+
 }

@@ -46,6 +46,7 @@ dependencies {
     implementation(project(path = ":core:database"))
     implementation(project(path = ":core:network"))
 
+    implementation(project(path = ":feature:auth:api"))
     implementation(project(path = ":feature:auth:impl"))
 
     implementation(libs.androidx.core.ktx)
@@ -58,6 +59,9 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+
+    //Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Compose
     implementation(libs.androidx.activity.compose)

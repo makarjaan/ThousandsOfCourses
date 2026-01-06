@@ -1,11 +1,14 @@
 package makarova.citypulse.feature.auth.api.repository
 
-import makarova.citypulse.feature.auth.api.model.UserLoginModel
-
 interface AuthRepository {
 
-    suspend fun loginUser(userLoginModel: UserLoginModel)
+    suspend fun register(username: String, name: String, password: String): Boolean
 
-    suspend fun deleteUser()
+    suspend fun login(username: String, password: String): Boolean
 
+    suspend fun logout()
+
+    suspend fun getToken(): String?
+
+    suspend fun refreshToken(): String?
 }

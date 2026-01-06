@@ -9,15 +9,9 @@ import makarova.citypulse.database.entities.UserEntity
 @Dao
 interface UserDao {
 
-    @Query("SELECT COUNT(*) FROM users")
-    suspend fun getUsersCount(): Int
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertUser(user: UserEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveUser(user: UserEntity)
-
-    @Query("DELETE FROM users")
-    suspend fun deleteAllUser()
-
-    @Query("SELECT id FROM users LIMIT 1")
-    suspend fun getCurrentUserId(): Long?
+    @Query("SELECT * FROM users WHERE email = :email")
+    suspend fun getUserByEmail(email: String): UserEntity?
 }
