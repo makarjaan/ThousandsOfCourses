@@ -40,8 +40,14 @@ android {
     defaultConfig {
         buildConfigField(
             "String",
-            "API_BASE_URL",
-            "\"https://drive.usercontent.google.com\""
+            "TICKET_API_BASE_URL",
+            "\"https://app.ticketmaster.com/discovery/v2/\""
+        )
+
+        buildConfigField(
+            "String",
+            "KUDA_GO_API_BASE_URL",
+            "\"https://kudago.com/public-api/v1.4/\""
         )
     }
 }
@@ -49,6 +55,7 @@ android {
 dependencies {
 
     implementation(project(path = ":core:utils"))
+    implementation(project(path = ":feature:main:api"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -23,11 +23,14 @@ interface BinderModule {
     fun bindAuthRepository_to_Impl(impl: AuthRepositoryImpl): AuthRepository
 
     @Binds
+    @Singleton
     fun bindCheckAuthUseCase_to_Impl(impl: CheckAuthUseCaseImpl): CheckAuthUseCase
 
     @Binds
+    @Singleton
     fun bindLoginUserUseCase_to_Impl(impl: LoginUserUseCaseImpl): LoginUseCase
 
     @Binds
+    @Singleton
     fun bindRegisterUserUseCase_to_Impl(impl: RegisterUserUseCaseImpl): RegisterUseCase
 }

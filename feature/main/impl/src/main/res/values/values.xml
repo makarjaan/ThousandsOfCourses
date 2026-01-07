@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_appname">City Pulse</string>
+    <string name="text_sbros">Сброс</string>
+    <string name="text_search">Поиск событий, мест, артистов</string>
+    <string name="text_recommen">Рекомендации</string>
+    <string name="text_category">События по категории</string>
+    <string name="text_null_category">По выбранной категории событий нет</string>
+</resources>

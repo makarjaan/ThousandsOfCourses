@@ -10,38 +10,23 @@ class Migration_1_2: Migration(1, 2) {
     override fun migrate(db: SupportSQLiteDatabase) {
         try {
             db.execSQL("""
-                CREATE TABLE `courses` (
-                    `id` INTEGER NOT NULL, 
-                    `title` TEXT NOT NULL, 
-                    `text` TEXT NOT NULL, 
-                    `price` TEXT NOT NULL, 
-                    `rate` REAL NOT NULL, 
-                    `startDate` TEXT NOT NULL, 
-                    `publishDate` TEXT NOT NULL, 
-                    PRIMARY KEY(`id`)
-                )
-            """)
+            CREATE TABLE IF NOT EXISTS `category_interest` (
+                `email` TEXT NOT NULL,
+                `category` TEXT NOT NULL,
+                `score` INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY(`email`, `category`)
+            )
+        """)
 
             db.execSQL("""
-                CREATE TABLE `user_favorites_courses` (
-                    `user_id` INTEGER NOT NULL,
-                    `course_id` INTEGER NOT NULL,
-                    `added_date` INTEGER NOT NULL DEFAULT (strftime('%s','now')),
-                    PRIMARY KEY(`user_id`, `course_id`),
-                    FOREIGN KEY(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-                    FOREIGN KEY(`course_id`) REFERENCES `courses`(`id`) ON DELETE CASCADE
-                )
-            """)
+            CREATE INDEX IF NOT EXISTS `index_category_interest_email` 
+            ON `category_interests` (`email`)
+        """)
 
             db.execSQL("""
-                CREATE INDEX `index_user_favorites_courses_user_id_course_id` 
-                ON `user_favorites_courses` (`user_id`, `course_id`)
-            """)
-
-            db.execSQL("""
-                CREATE INDEX `index_user_favorites_courses_course_id` 
-                ON `user_favorites_courses` (`course_id`)
-            """)
+            CREATE INDEX IF NOT EXISTS `index_category_interest_category_slug` 
+            ON `category_interests` (`category_slug`)
+        """)
         } catch (ex: Exception) {
             Log.e(AppDataBase.DB_LOG_KEY, "Error while 1_2 migration: ${ex.message}")
         }

@@ -49,6 +49,10 @@ dependencies {
     implementation(project(path = ":feature:auth:api"))
     implementation(project(path = ":feature:auth:impl"))
 
+    implementation(project(path = ":feature:main:api"))
+    implementation(project(path = ":feature:main:impl"))
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

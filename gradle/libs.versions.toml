@@ -27,6 +27,7 @@ hilt = "2.56.2"
 composeBom = "2025.10.01"
 activityCompose =  "1.11.0"
 lifecycleCompose = "2.7.0"
+coil = "2.6.0"
 
 # Навигация
 navCompose = "2.9.5"
@@ -74,6 +75,7 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # Navigation
 jetpack-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navCompose" }

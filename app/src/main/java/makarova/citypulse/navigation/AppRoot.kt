@@ -10,7 +10,7 @@ import makarova.citypulse.feature.auth.api.navigation.LoginRoute
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import makarova.citypulse.navigation.AppViewModel
+import makarova.citypulse.feature.main.api.navigation.MainRoute
 
 @Composable
 fun AppRoot(
@@ -20,7 +20,7 @@ fun AppRoot(
 
     when (isAuthorized) {
         null -> SplashScreen()
-        true -> SplashScreen()
+        true -> AppNavHost(startDestination = MainRoute.destination)
         false -> AppNavHost(startDestination = LoginRoute.destination)
     }
 }

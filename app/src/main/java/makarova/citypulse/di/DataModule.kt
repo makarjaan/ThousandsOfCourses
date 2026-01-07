@@ -9,14 +9,9 @@ import javax.inject.Singleton
 import android.content.Context
 import androidx.room.Room
 import makarova.citypulse.database.AppDataBase
+import makarova.citypulse.database.dao.CategoryInterestDao
 import makarova.citypulse.database.dao.UserDao
 import makarova.citypulse.database.migrations.Migration_1_2
-import makarova.citypulse.network.Api
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import makarova.citypulse.network.BuildConfig.API_BASE_URL
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -35,34 +30,5 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideApi(
-        okhttpClient: OkHttpClient,
-        converterFactory: GsonConverterFactory
-    ): Api {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(API_BASE_URL)
-            .client(okhttpClient)
-            .addConverterFactory(converterFactory)
-
-        return retrofit.build().create(Api::class.java)
-    }
-
-    @Provides
-    fun provideOkHttpClient(): OkHttpClient {
-        val builder = OkHttpClient.Builder()
-
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        builder.addInterceptor(loggingInterceptor)
-
-        return builder.build()
-    }
-
-    @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-
+    fun provideCategoryInterestDao(db: AppDataBase): CategoryInterestDao = db.categoryInterestDao
 }
