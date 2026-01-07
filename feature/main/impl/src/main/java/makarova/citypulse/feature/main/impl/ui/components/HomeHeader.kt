@@ -1,5 +1,6 @@
 package makarova.citypulse.feature.main.impl.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,7 +14,10 @@ import androidx.compose.ui.unit.dp
 import makarova.citypulse.feature.main.impl.R
 
 @Composable
-fun HomeHeader() {
+fun HomeHeader(
+    city: String,
+    onCityClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,10 +30,12 @@ fun HomeHeader() {
         )
 
         Text(
-            text = "Москва · события рядом с тобой",
+            text = "$city ${stringResource(R.string.text_near)}",
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
-            modifier = Modifier.padding(top = 6.dp)
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier
+                .padding(top = 6.dp)
+                .clickable { onCityClick() }
         )
     }
 }

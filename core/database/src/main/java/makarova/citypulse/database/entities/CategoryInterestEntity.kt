@@ -1,4 +1,4 @@
-package makarova.citypulse.feature.main.impl.data.local
+package makarova.citypulse.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

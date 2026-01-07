@@ -1,7 +1,7 @@
 package makarova.citypulse.database.dao
 
 import androidx.room.*
-import makarova.citypulse.feature.main.impl.data.local.CategoryInterestEntity
+import makarova.citypulse.database.entities.CategoryInterestEntity
 
 @Dao
 interface CategoryInterestDao {

@@ -4,7 +4,7 @@ import makarova.citypulse.database.dao.CategoryInterestDao
 import makarova.citypulse.feature.main.api.model.EventModel
 import makarova.citypulse.feature.main.api.repository.EventsRepository
 import makarova.citypulse.feature.main.api.repository.RecommendationsRepository
-import makarova.citypulse.feature.main.impl.recommendation.RecommendationScoreCalculator
+import makarova.citypulse.feature.main.impl.utils.RecommendationScoreCalculator
 import javax.inject.Inject
 
 class RecommendationsRepositoryImpl @Inject constructor(

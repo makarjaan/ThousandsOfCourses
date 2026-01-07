@@ -70,4 +70,9 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.activity.compose.v180)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.accompanist.permissions)
 }

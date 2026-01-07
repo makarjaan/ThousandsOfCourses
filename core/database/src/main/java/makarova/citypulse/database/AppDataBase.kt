@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import makarova.citypulse.database.dao.CategoryInterestDao
 import makarova.citypulse.database.dao.UserDao
 import makarova.citypulse.database.entities.UserEntity
-import makarova.citypulse.feature.main.impl.data.local.CategoryInterestEntity
+import makarova.citypulse.database.entities.CategoryInterestEntity
 
 
 @Database(

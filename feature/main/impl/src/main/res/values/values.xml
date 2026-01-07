@@ -6,4 +6,10 @@
     <string name="text_recommen">Рекомендации</string>
     <string name="text_category">События по категории</string>
     <string name="text_null_category">По выбранной категории событий нет</string>
+    <string name="text_choose_city">Выберите город</string>
+    <string name="text_auto">Определить автоматически</string>
+    <string name="text_near">· события рядом с тобой</string>
+
+    <string name="text_permit">Разрешить</string>
+    <string name="text_cancel">Отмена</string>
 </resources>

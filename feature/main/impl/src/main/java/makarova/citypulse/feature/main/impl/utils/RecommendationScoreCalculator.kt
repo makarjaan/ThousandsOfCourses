@@ -1,4 +1,4 @@
-package makarova.citypulse.feature.main.impl.recommendation
+package makarova.citypulse.feature.main.impl.utils
 
 import makarova.citypulse.feature.main.api.model.EventModel
 import kotlin.math.abs

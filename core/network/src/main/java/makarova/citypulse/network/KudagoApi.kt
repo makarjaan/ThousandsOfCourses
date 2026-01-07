@@ -2,6 +2,7 @@ package makarova.citypulse.network
 
 import makarova.citypulse.network.pojo.response.KudagoCategoryResponse
 import makarova.citypulse.network.pojo.response.KudagoEventsResponse
+import makarova.citypulse.network.pojo.response.KudagoSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -25,4 +26,20 @@ interface KudagoApi {
         @Query("fields") fields: String = "slug,name",
         @Query("order_by") orderBy: String = "slug"
     ): List<KudagoCategoryResponse>?
+
+    @GET("search/")
+    suspend fun search(
+        @Query("q") query: String,
+        @Query("location") location: String? = null,
+        @Query("ctype") contentType: String? = null,
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("lang") lang: String? = null,
+        @Query("expand") expand: String? = null,
+        @Query("is_free") isFree: Int? = null,
+        @Query("lat") lat: Double? = null,
+        @Query("lon") lon: Double? = null,
+        @Query("radius") radius: Int? = null,
+        @Query("include_inactual") includeInactual: Int? = null
+    ): KudagoSearchResponse?
 }

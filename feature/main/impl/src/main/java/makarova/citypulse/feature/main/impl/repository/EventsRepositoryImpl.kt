@@ -1,6 +1,5 @@
 package makarova.citypulse.feature.main.impl.repository
 
-import androidx.compose.foundation.pager.PageSize
 import makarova.citypulse.feature.main.api.model.EventModel
 import makarova.citypulse.feature.main.api.repository.EventsRepository
 import makarova.citypulse.network.KudagoApi
