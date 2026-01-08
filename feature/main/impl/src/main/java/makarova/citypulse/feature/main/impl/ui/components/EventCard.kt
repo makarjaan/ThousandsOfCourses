@@ -27,7 +27,7 @@ fun EventCard(
             .padding(horizontal = 16.dp, vertical = 10.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(MaterialTheme.colorScheme.surface)
-            .clickable { onClick() }
+            .clickable(onClick = onClick)
     ) {
         AsyncImage(
             model = event.imageUrl,

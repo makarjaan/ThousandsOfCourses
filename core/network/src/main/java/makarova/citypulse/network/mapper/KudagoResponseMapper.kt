@@ -21,7 +21,7 @@ class KudagoResponseMapper @Inject constructor() {
         return input?.results?.map { mapEvent(it) } ?: emptyList()
     }
 
-    private fun mapEvent(input: KudagoEventResponse?): EventModel {
+    fun mapEvent(input: KudagoEventResponse?): EventModel {
         val date = input?.dates?.firstOrNull()
 
         return input?.let {
@@ -36,8 +36,15 @@ class KudagoResponseMapper @Inject constructor() {
                 category = it.categories?.firstOrNull() ?: Constants.EMPTY_STRING,
                 isFree = it.isFree == true,
                 favoritesCount = it.favoritesCount ?: 0,
-                city = it.location?.name ?: Constants.EMPTY_STRING
-            )
+                city = it.location?.name ?: Constants.EMPTY_STRING,
+                shortTitle = it.shortTitle.orEmpty(),
+                description = it.description.orEmpty(),
+                fullDescription = cleanHtml(it.bodyText.orEmpty()),
+                price = it.price.orEmpty(),
+                ageRestriction = it.ageRestriction.orEmpty(),
+                locationSlug = it.location?.slug.orEmpty(),
+                siteUrl = it.siteUrl.orEmpty()
+                )
         } ?: EventModel.EMPTY
     }
 
@@ -67,6 +74,16 @@ class KudagoResponseMapper @Inject constructor() {
                 favoritesCount = it.favoritesCount ?: 0
             )
         } ?: SearchResultModel.EMPTY
+    }
+
+    private fun cleanHtml(html: String): String {
+        return html
+            .replace(Regex("<br\\s*/?>"), "\n")
+            .replace(Regex("<[^>]*>"), " ")
+            .replace(Regex("\\s+"), " ")
+            .replace(Regex("&nbsp;"), " ")
+            .replace(Regex("&[a-z]+;"), " ")
+            .trim()
     }
 
     private fun formatDates(dates: List<KudagoDateResponse>?): String {

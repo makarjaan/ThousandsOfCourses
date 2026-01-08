@@ -74,7 +74,6 @@ class MainViewModel @Inject constructor(
             is MainEvent.ChangeCity -> changeCity(event.city)
             is MainEvent.ApplyCategoryFilter -> applyCategoryFilter(event.categories)
             MainEvent.LoadNextCategoryPage -> loadNextCategoryPage()
-            is MainEvent.EventOpened -> {}
             MainEvent.DetectCity -> detectAndSetCity()
             MainEvent.ClearSearch -> clearSearch()
             is MainEvent.UpdateSearchQuery -> updateSearchQuery(event.query)
@@ -269,11 +268,6 @@ class MainViewModel @Inject constructor(
                 _detectionResult.emit(Error("Ошибка определения города: ${e.message}"))
             }
         }
-    }
-
-    private fun handleEventOpened(event: CityModel) {
-        // Логика для открытия события
-        // Можно добавить навигацию на детальный экран
     }
 
     private fun handleError(message: String) {

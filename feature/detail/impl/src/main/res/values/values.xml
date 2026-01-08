@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="free">Бесплатно</string>
+    <string name="date">Дата</string>
+    <string name="place">Место </string>
+    <string name="address">Адрес </string>
+    <string name="age">Возрастное ограничение: </string>
+    <string name="price">Цена: </string>
+    <string name="fav">В избранном у </string>
+    <string name="people"> человек</string>
+    <string name="desc">Описание</string>
+    <string name="site">Перейти на сайт события</string>
+</resources>

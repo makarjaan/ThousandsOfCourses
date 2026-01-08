@@ -12,7 +12,10 @@ import makarova.citypulse.feature.main.impl.presentation.*
 import makarova.citypulse.feature.main.impl.ui.components.CityPickerBottomSheet
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onEventClick: (String) -> Unit,
+    onProfileClick: () -> Unit
+) {
     val viewModel: MainViewModel = hiltViewModel()
     val state by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -111,9 +114,7 @@ fun MainScreen() {
         onCategoryToggle = {
             categoriesViewModel.reduce(CategoriesEvent.ToggleCategory(it))
         },
-        onEventClick = {
-            viewModel.reduce(MainEvent.EventOpened(it))
-        },
+        onEventClick = onEventClick,
         onCitySelected = { city ->
             viewModel.reduce(MainEvent.ChangeCity(city))
         },

@@ -38,7 +38,7 @@ fun UIMainScreen(
     snackbarHostState: SnackbarHostState,
     categoriesState: CategoriesUiState,
     onCategoryToggle: (String) -> Unit,
-    onEventClick: (EventModel) -> Unit = {},
+    onEventClick: (String) -> Unit = {},
     onCitySelected: (CityModel) -> Unit = {},
     onCityPickerClick: () -> Unit = {},
     onLoadNextPage: () -> Unit = {},
@@ -62,6 +62,9 @@ fun UIMainScreen(
                     onCityClick = {
                         onCityPickerClick()
                         showCityPicker = true
+                    },
+                    onProfileClick = {
+
                     }
                 )
             }
@@ -170,7 +173,9 @@ fun UIMainScreen(
                 items(events) { event ->
                     EventCard(
                         event = event,
-                        onClick = { onEventClick(event) }
+                        onClick = {
+                            println("EventCard clicked: ${event.id}")
+                            onEventClick(event.id)  }
                     )
                 }
 
@@ -236,91 +241,5 @@ private fun PaginationLoading() {
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(strokeWidth = 2.dp)
-    }
-}
-
-private val FakeEvents = listOf(
-    EventModel(
-        dateStart = 4L,
-        dateEnd = null,
-        address = Constants.EMPTY_STRING,
-        isFree = false,
-        favoritesCount = 0,
-        id = "1",
-        title = "Jazz Night Live",
-        place = "Powerhouse",
-        imageUrl = "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
-        category = "music",
-        city = "Казань"
-    ),
-    EventModel(
-        dateStart = 8L,
-        dateEnd = null,
-        isFree = false,
-        address = Constants.EMPTY_STRING,
-        favoritesCount = 0,
-        id = "2",
-        title = "Street Food Festival",
-        place = "Парк Горького",
-        imageUrl = "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
-        category = "music",
-        city = "Казань"
-    ),
-)
-
-private val FakeSearchResults = listOf(
-    SearchResultModel(
-        id = "1",
-        contentType = "event",
-        title = "Концерт группы Lumen",
-        description = "Легендарная российская рок-группа Lumen выступит с новым альбомом",
-        imageUrl = "",
-        category = "music",
-        city = "Москва",
-        isFree = false,
-        dates = "25.12.2023 19:00",
-        address = "Крокус Сити Холл",
-        siteUrl = null,
-        tags = listOf("рок", "концерт"),
-        favoritesCount = 150
-    ),
-    SearchResultModel(
-        id = "2",
-        contentType = "place",
-        title = "Музей современного искусства",
-        description = "Выставка современного искусства европейских художников",
-        imageUrl = "",
-        category = "exhibition",
-        city = "Санкт-Петербург",
-        isFree = true,
-        dates = "",
-        address = "Невский проспект, 45",
-        siteUrl = null,
-        tags = listOf("искусство", "выставка"),
-        favoritesCount = 89
-    )
-)
-
-@Preview(showSystemUi = true)
-@Composable
-private fun HomePreview() {
-    AppTheme {
-        UIMainScreen(
-            events = FakeEvents,
-            isLoading = false,
-            city = CityModel("msk", "Москва"),
-            snackbarHostState = SnackbarHostState(),
-            categoriesState = CategoriesUiState(),
-            onEventClick = {},
-            onCategoryToggle = {},
-            onLoadNextPage = {},
-            onCitySelected = {},
-            onCityPickerClick = {},
-            onDetectCityClick = {},
-            searchResults = FakeSearchResults,
-            searchQuery = "концерт",
-            onSearchChanged = {},
-            onClearSearch = {}
-        )
     }
 }

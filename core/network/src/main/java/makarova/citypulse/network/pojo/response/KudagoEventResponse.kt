@@ -20,6 +20,10 @@ class KudagoEventResponse(
     val title: String?,
     @SerializedName("short_title")
     val shortTitle: String?,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("body_text")
+    val bodyText: String?,
     @SerializedName("dates")
     val dates: List<KudagoDateResponse>?,
     @SerializedName("place")
@@ -32,8 +36,14 @@ class KudagoEventResponse(
     val categories: List<String>?,
     @SerializedName("is_free")
     val isFree: Boolean?,
+    @SerializedName("price")
+    val price: String?,
+    @SerializedName("age_restriction")
+    val ageRestriction: String?,
     @SerializedName("favorites_count")
-    val favoritesCount: Int?
+    val favoritesCount: Int?,
+    @SerializedName("site_url")
+    val siteUrl: String?
 )
 
 class KudagoDateResponse(

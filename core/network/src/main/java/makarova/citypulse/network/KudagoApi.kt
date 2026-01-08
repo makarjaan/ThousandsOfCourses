@@ -1,9 +1,11 @@
 package makarova.citypulse.network
 
 import makarova.citypulse.network.pojo.response.KudagoCategoryResponse
+import makarova.citypulse.network.pojo.response.KudagoEventResponse
 import makarova.citypulse.network.pojo.response.KudagoEventsResponse
 import makarova.citypulse.network.pojo.response.KudagoSearchResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface KudagoApi {
@@ -42,4 +44,14 @@ interface KudagoApi {
         @Query("radius") radius: Int? = null,
         @Query("include_inactual") includeInactual: Int? = null
     ): KudagoSearchResponse?
+
+
+    @GET("events/{event_id}/")
+    suspend fun getEventDetails(
+        @Path("event_id") eventId: String,
+        @Query("lang") lang: String = "ru",
+        @Query("fields") fields: String =
+            "id,title,dates,place,description,body_text,location,categories,age_restriction,price,is_free,images,favorites_count,site_url",
+        @Query("expand") expand: String = "images,place,location,dates"
+    ): KudagoEventResponse?
 }

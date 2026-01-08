@@ -38,7 +38,6 @@ sealed interface MainEvent {
     data object LoadNextCategoryPage: MainEvent
     data class ChangeCity(val city: CityModel) : MainEvent
     data class ApplyCategoryFilter(val categories: Set<String>) : MainEvent
-    data class EventOpened(val event: EventModel) : MainEvent
     data class UpdateSearchQuery(val query: String) : MainEvent
     data object ClearSearch : MainEvent
 }

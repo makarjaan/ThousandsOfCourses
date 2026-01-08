@@ -50,6 +50,9 @@ dependencies {
     implementation(project(path = ":core:network"))
 
     implementation(project(path = ":feature:main:api"))
+    implementation(project(path = ":feature:detail:api"))
+    implementation(project(path = ":feature:profile:api"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
