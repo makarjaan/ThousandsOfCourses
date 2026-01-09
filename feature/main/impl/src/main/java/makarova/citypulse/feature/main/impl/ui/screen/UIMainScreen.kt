@@ -13,9 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import makarova.citypulse.designsystem.ui.AppTheme
 import makarova.citypulse.feature.main.api.model.CityModel
 import makarova.citypulse.feature.main.api.model.EventModel
 import makarova.citypulse.feature.main.api.model.SearchResultModel
@@ -24,7 +22,6 @@ import makarova.citypulse.feature.main.impl.ui.components.CategorySection
 import makarova.citypulse.feature.main.impl.ui.components.EventCard
 import makarova.citypulse.feature.main.impl.ui.components.HomeHeader
 import makarova.citypulse.feature.main.impl.ui.components.SearchBar
-import makarova.citypulse.utils.Constants
 import makarova.citypulse.feature.main.impl.R
 import makarova.citypulse.feature.main.impl.ui.components.CityPickerBottomSheet
 import makarova.citypulse.feature.main.impl.ui.components.SearchResultItem
@@ -47,6 +44,7 @@ fun UIMainScreen(
     searchQuery: String,
     onSearchChanged: (String) -> Unit,
     onClearSearch: () -> Unit,
+    onProfileClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var showCityPicker by remember { mutableStateOf(false) }
@@ -64,7 +62,7 @@ fun UIMainScreen(
                         showCityPicker = true
                     },
                     onProfileClick = {
-
+                        onProfileClick()
                     }
                 )
             }
@@ -101,7 +99,7 @@ fun UIMainScreen(
                 else if (searchResults.isNotEmpty()) {
                     item {
                         Text(
-                            text = "Результаты поиска:",
+                            text = stringResource(R.string.search_result),
                             style = MaterialTheme.typography.titleMedium,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
                         )
@@ -109,8 +107,7 @@ fun UIMainScreen(
 
                     items(searchResults) { result ->
                         SearchResultItem(
-                            result = result,
-                            onClick = { /* можно добавить обработку клика по результату поиска */ }
+                            result = result
                         )
                     }
                 }
@@ -123,7 +120,9 @@ fun UIMainScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "По запросу \"$searchQuery\" ничего не найдено",
+                                text = "${stringResource(R.string.search_zapros)} " +
+                                        "\"$searchQuery\" " +
+                                        stringResource(R.string.nothing),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -139,7 +138,7 @@ fun UIMainScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "Введите минимум 2 символа для поиска",
+                                text = stringResource(R.string.search_min),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -174,7 +173,6 @@ fun UIMainScreen(
                     EventCard(
                         event = event,
                         onClick = {
-                            println("EventCard clicked: ${event.id}")
                             onEventClick(event.id)  }
                     )
                 }

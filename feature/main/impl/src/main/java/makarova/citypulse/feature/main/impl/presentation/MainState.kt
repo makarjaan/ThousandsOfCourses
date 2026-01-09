@@ -28,7 +28,6 @@ data class MainState(
 
 sealed interface MainEffect {
     data class ShowError(val message: String) : MainEffect
-    data class NavigateToEvent(val event: EventModel) : MainEffect
     data class ShowSearchError(val message: String) : MainEffect
 }
 

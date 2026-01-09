@@ -1,7 +1,6 @@
 package makarova.citypulse.feature.detail.impl.ui.components
 
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,8 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import makarova.citypulse.feature.detail.impl.R
 import androidx.core.net.toUri
+import makarova.citypulse.feature.detail.impl.R
+
 
 @Composable
 internal fun SiteChip(

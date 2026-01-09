@@ -1,5 +1,7 @@
 package makarova.citypulse.feature.main.impl.usecasae
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import makarova.citypulse.feature.main.api.model.EventModel
 import makarova.citypulse.feature.main.api.repository.CategoryInterestRepository
 import makarova.citypulse.feature.main.api.repository.EventsRepository
@@ -10,35 +12,39 @@ import javax.inject.Inject
 class GetRecommendedEventsUseCaseImpl @Inject constructor(
     private val eventsRepository: EventsRepository,
     private val categoryInterestRepository: CategoryInterestRepository,
-    private val calculator: RecommendationScoreCalculator
+    private val calculator: RecommendationScoreCalculator,
+    private val ioDispatcher: CoroutineDispatcher
 ) : GetRecommendedEventsUseCase {
 
     override suspend fun invoke(city: String): List<EventModel> {
 
-        val events = eventsRepository.getEvents(city)
-        val now = System.currentTimeMillis()
+        return withContext(ioDispatcher) {
 
-        val userPreferences = categoryInterestRepository.getUserCategoryScores("arina@mail.ru")
+            val events = eventsRepository.getEvents(city)
+            val now = System.currentTimeMillis()
 
-        val categoryScores = if (userPreferences.isEmpty()) {
-            events.associate { it.category.lowercase() to 0 }
-        } else {
-            userPreferences
-        }
+            val userPreferences = categoryInterestRepository.getUserCategoryScores("arina@mail.ru")
 
-
-        return events
-            .map { event ->
-                val eventScore = calculator.calculate(
-                    event = event,
-                    categoryScores = categoryScores,
-                    now = now
-                )
-                event to eventScore
+            val categoryScores = if (userPreferences.isEmpty()) {
+                events.associate { it.category.lowercase() to 0 }
+            } else {
+                userPreferences
             }
-            .sortedByDescending { it.second }
-            .map { it.first }
-            .take(10)
+
+
+            return@withContext events
+                .map { event ->
+                    val eventScore = calculator.calculate(
+                        event = event,
+                        categoryScores = categoryScores,
+                        now = now
+                    )
+                    event to eventScore
+                }
+                .sortedByDescending { it.second }
+                .map { it.first }
+                .take(10)
+        }
     }
 }
 

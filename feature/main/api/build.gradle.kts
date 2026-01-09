@@ -39,6 +39,8 @@ dependencies {
     implementation(project(path = ":core:utils"))
     implementation(project(path = ":core:navigation"))
 
+    implementation(project(path = ":feature:auth:api"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

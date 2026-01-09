@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import makarova.citypulse.feature.detail.api.navigation.EventDetailRoute
-import makarova.citypulse.feature.detail.api.navigation.ProfileRoute
+import makarova.citypulse.feature.profile.api.navigation.ProfileRoute
 import makarova.citypulse.feature.main.api.navigation.MainRoute
 import makarova.citypulse.feature.main.impl.ui.screen.MainScreen
 

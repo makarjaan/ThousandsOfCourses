@@ -40,7 +40,11 @@ dependencies {
     implementation(project(path = ":core:navigation"))
     implementation(project(path = ":core:database"))
     implementation(project(path = ":core:utils"))
+
     implementation(project(path = ":feature:profile:api"))
+    implementation(project(path = ":feature:auth:api"))
+    implementation(project(path = ":feature:main:api"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,6 +57,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.bundles.compose.debug)
+    implementation(libs.coil.compose)
 
     //Navigation
     implementation(libs.androidx.hilt.navigation.compose)

@@ -6,11 +6,21 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "users")
 data class UserEntity(
+
     @PrimaryKey
     @ColumnInfo(name = "email")
     val email: String,
+
     @ColumnInfo(name = "name")
     val name: String,
+
     @ColumnInfo(name = "passwordHash")
-    val passwordHash: String
+    val passwordHash: String,
+
+    @ColumnInfo(name = "avatar_url")
+    val avatarUrl: String? = null,
+
+    @ColumnInfo(name = "updated_at")
+    val updatedAt: Long = System.currentTimeMillis()
+
 )

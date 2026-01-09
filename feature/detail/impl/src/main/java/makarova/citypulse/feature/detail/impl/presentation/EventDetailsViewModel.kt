@@ -12,13 +12,19 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
 import makarova.citypulse.feature.detail.api.usecase.GetEventDetailsUseCase
+import makarova.citypulse.feature.favorite.api.usecase.IsFavoriteUseCase
+import makarova.citypulse.feature.favorite.api.usecase.ToggleFavoriteUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class EventDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val getEventDetailsUseCase: GetEventDetailsUseCase
+    private val getEventDetailsUseCase: GetEventDetailsUseCase,
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase,
+    private val isFavoriteUseCase: IsFavoriteUseCase,
+    private val getCurrentUserUseCase: GetCurrentUserUseCase
 ) : ViewModel() {
 
     val eventId: String = savedStateHandle.get<String>("eventId") ?: ""
@@ -39,7 +45,6 @@ class EventDetailsViewModel @Inject constructor(
         when (event) {
             is EventDetailsEvent.LoadEvent -> loadEvent(event.eventId)
             EventDetailsEvent.ToggleFavorite -> toggleFavorite()
-            EventDetailsEvent.ShareEvent -> shareEvent()
         }
     }
 
@@ -47,58 +52,82 @@ class EventDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _uiState.update { it.copy(isLoading = true, error = null) }
+
                 val event = getEventDetailsUseCase(eventId)
-                _uiState.update { it.copy(isLoading = false, event = event) }
+
+                val user = getCurrentUserUseCase()
+                val isFavorite = if (user.login.isNotBlank()) {
+                    isFavoriteUseCase.invoke(eventId, user.login)
+                } else {
+                    false
+                }
+
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        event = event,
+                        isFavorite = isFavorite,
+                    )
+                }
             } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
                         isLoading = false,
-                        error = "Ошибка загрузки события"
+                        error = e.message ?: "Ошибка загрузки события",
                     )
                 }
-                _uiEffect.emit(EventDetailsEffect
-                    .ShowError("Не удалось загрузить данные события"))
+                emitEffect(EventDetailsEffect.ShowError("Не удалось загрузить данные события"))
             }
         }
     }
 
     private fun toggleFavorite() {
-        val currentEvent = _uiState.value.event
-        if (currentEvent != null) {
-            // Обновляем состояние в UI (реальная логика будет в репозитории)
+        viewModelScope.launch {
+            val currentEvent = _uiState.value.event ?: return@launch
+            val user = getCurrentUserUseCase()
+
+            if (user.login.isBlank()) {
+                emitEffect(EventDetailsEffect.ShowError("Требуется авторизация"))
+                return@launch
+            }
+
+            val wasFavorite = _uiState.value.isFavorite
+            val newFavoriteState = !wasFavorite
+            val newFavoritesCount = if (newFavoriteState) {
+                currentEvent.favoritesCount + 1
+            } else {
+                maxOf(0, currentEvent.favoritesCount - 1)
+            }
+
             _uiState.update { state ->
                 state.copy(
-                    event = currentEvent.copy(
-                        favoritesCount = if (state.isFavorite) {
-                            currentEvent.favoritesCount - 1
-                        } else {
-                            currentEvent.favoritesCount + 1
-                        }
-                    ),
-                    isFavorite = !state.isFavorite
+                    isFavorite = newFavoriteState,
+                    event = currentEvent.copy(favoritesCount = newFavoritesCount)
                 )
             }
 
-            viewModelScope.launch {
-                // Здесь будет вызов use case для обновления в базе данных
-                _uiEffect.emit(
-                    if (_uiState.value.isFavorite) {
-                        EventDetailsEffect.ShowMessage("Добавлено в избранное")
-                    } else {
-                        EventDetailsEffect.ShowMessage("Удалено из избранного")
-                    }
+            try {
+                toggleFavoriteUseCase.invoke(currentEvent, user.login)
+
+                emitEffect(
+                    EventDetailsEffect.ShowMessage(
+                        if (newFavoriteState) "Добавлено в избранное" else "Удалено из избранного"
+                    )
                 )
+            } catch (e: Exception) {
+                _uiState.update { state ->
+                    state.copy(
+                        isFavorite = wasFavorite,
+                        event = currentEvent
+                    )
+                }
+                emitEffect(EventDetailsEffect.ShowError("Не удалось обновить избранное"))
             }
         }
     }
 
-    private fun shareEvent() {
-        val event = _uiState.value.event
-        if (event != null) {
-            viewModelScope.launch {
-                _uiEffect.emit(EventDetailsEffect.ShareEvent(event))
-            }
-        }
+    private suspend fun emitEffect(effect: EventDetailsEffect) {
+        _uiEffect.emit(effect)
     }
 
 }

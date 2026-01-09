@@ -13,4 +13,14 @@
     <string name="text_permit">Разрешить</string>
     <string name="text_cancel">Отмена</string>
     <string name="text_profile">Профиль</string>
+
+    <string name="event">Событие</string>
+    <string name="place">Место</string>
+    <string name="news">Новость</string>
+    <string name="list">Подборка</string>
+
+    <string name="search_result">Результаты поиска:</string>
+    <string name="search_zapros">По запросу </string>
+    <string name="nothing"> ничего не найдено</string>
+    <string name="search_min">Введите минимум 2 символа для поиска</string>
 </resources>

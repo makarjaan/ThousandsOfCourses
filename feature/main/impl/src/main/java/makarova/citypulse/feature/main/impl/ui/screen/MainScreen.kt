@@ -87,9 +87,6 @@ fun MainScreen(
                 is MainEffect.ShowSearchError -> {
                     snackbarHostState.showSnackbar(effect.message)
                 }
-                is MainEffect.NavigateToEvent -> {
-                    //
-                }
             }
         }
     }
@@ -128,6 +125,7 @@ fun MainScreen(
         onClearSearch = {
             viewModel.reduce(MainEvent.ClearSearch)
         },
+        onProfileClick = { onProfileClick() },
         onCityPickerClick = { showCityPicker = true }
     )
 

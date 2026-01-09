@@ -23,7 +23,6 @@ fun NavGraphBuilder.detailNavGraph(
         EventDetailScreen(
             eventId = eventId,
             onBackClick = { navController.popBackStack() },
-            onShare = {}
         )
     }
 }

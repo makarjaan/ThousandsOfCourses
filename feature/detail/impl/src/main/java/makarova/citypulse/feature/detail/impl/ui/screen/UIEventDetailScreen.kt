@@ -20,8 +20,8 @@ import makarova.citypulse.feature.main.api.model.EventModel
 import makarova.citypulse.feature.detail.impl.ui.components.EventImage
 import makarova.citypulse.feature.detail.impl.ui.components.EventInfoChip
 import makarova.citypulse.feature.detail.impl.utils.formatDate
-import makarova.citypulse.feature.detail.impl.R
 import makarova.citypulse.feature.detail.impl.ui.components.SiteChip
+import makarova.citypulse.feature.detail.impl.R
 
 
 @Composable
@@ -178,7 +178,7 @@ fun UIEventDetailScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Цена: ",
+                            text = stringResource(R.string.price),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

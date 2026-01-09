@@ -12,18 +12,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import makarova.citypulse.feature.main.api.model.SearchResultModel
+import makarova.citypulse.feature.main.impl.R
 
 @Composable
 fun SearchResultItem(
     result: SearchResultModel,
-    onClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
-        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
@@ -47,10 +47,10 @@ fun SearchResultItem(
             ) {
                 Text(
                     text = when (result.contentType) {
-                        "event" -> "Событие"
-                        "place" -> "Место"
-                        "news" -> "Новость"
-                        "list" -> "Подборка"
+                        "event" -> stringResource(R.string.event)
+                        "place" -> stringResource(R.string.place)
+                        "news" -> stringResource(R.string.news)
+                        "list" -> stringResource(R.string.list)
                         else -> result.contentType
                     },
                     style = MaterialTheme.typography.labelSmall,

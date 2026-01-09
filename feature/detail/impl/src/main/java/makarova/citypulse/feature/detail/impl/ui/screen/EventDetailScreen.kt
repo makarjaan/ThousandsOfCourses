@@ -17,7 +17,6 @@ import makarova.citypulse.feature.detail.impl.presentation.EventDetailsViewModel
 fun EventDetailScreen(
     eventId: String,
     onBackClick: () -> Unit,
-    onShare: () -> Unit
 ) {
     val viewModel: EventDetailsViewModel = hiltViewModel()
 
@@ -36,9 +35,6 @@ fun EventDetailScreen(
                 }
                 is EventDetailsEffect.ShowMessage -> {
                     snackbarHostState.showSnackbar(message = effect.message)
-                }
-                is EventDetailsEffect.ShareEvent -> {
-                    onShare()
                 }
             }
         }

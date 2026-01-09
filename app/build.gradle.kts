@@ -55,6 +55,12 @@ dependencies {
     implementation(project(path = ":feature:detail:api"))
     implementation(project(path = ":feature:detail:impl"))
 
+    implementation(project(path = ":feature:profile:api"))
+    implementation(project(path = ":feature:profile:impl"))
+
+    implementation(project(path = ":feature:favorite:api"))
+    implementation(project(path = ":feature:favorite:impl"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
