@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import makarova.citypulse.feature.detail.impl.R
 
 @Composable
 fun EventImage(
@@ -50,7 +52,7 @@ fun EventImage(
                     CircleShape
                 )
         ) {
-            Icon(Icons.Default.ArrowBack, contentDescription = "Назад")
+            Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.back))
         }
 
         IconButton(
@@ -67,7 +69,7 @@ fun EventImage(
                 imageVector =
                     if (isFavorite) Icons.Filled.Favorite
                     else Icons.Outlined.FavoriteBorder,
-                contentDescription = "В избранное",
+                contentDescription = stringResource(R.string.fav),
                 tint = if (isFavorite)
                     MaterialTheme.colorScheme.primary
                 else

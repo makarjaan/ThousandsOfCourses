@@ -44,7 +44,8 @@ dependencies {
 
     implementation(project(path = ":feature:favorite:api"))
     implementation(project(path = ":feature:main:api"))
-
+    implementation(project(path = ":feature:auth:api"))
+    implementation(project(path = ":feature:detail:api"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

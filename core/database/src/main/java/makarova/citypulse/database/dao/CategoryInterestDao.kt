@@ -30,4 +30,13 @@ interface CategoryInterestDao {
 
     @Query("DELETE FROM category_interest WHERE email = :email")
     suspend fun clearUserPreferences(email: String)
+
+    @Query("""
+        SELECT category 
+        FROM category_interest 
+        WHERE email = :email 
+        ORDER BY score DESC 
+        LIMIT 3
+    """)
+    suspend fun getTopCategoriesForUser(email: String): List<String>
 }

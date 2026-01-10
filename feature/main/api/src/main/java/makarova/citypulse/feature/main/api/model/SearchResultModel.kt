@@ -1,7 +1,9 @@
 package makarova.citypulse.feature.main.api.model
 
+import androidx.compose.runtime.Immutable
 import makarova.citypulse.utils.Constants
 
+@Immutable
 data class SearchResultModel(
     val id: String,
     val contentType: String,

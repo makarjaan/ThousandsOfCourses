@@ -12,20 +12,23 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
+import makarova.citypulse.feature.auth.api.usecase.LogoutUseCase
+import makarova.citypulse.feature.favorite.api.usecase.GetFavoriteEventsUseCase
+import makarova.citypulse.feature.favorite.api.usecase.GetFavoritesCountUseCase
 import makarova.citypulse.feature.main.api.model.DetectCityResult
 import makarova.citypulse.feature.main.api.usecase.DetectCityUseCase
-import makarova.citypulse.feature.profile.api.usecase.UpdateUserAvatarUseCase
+import makarova.citypulse.feature.profile.api.usecase.GetTopCategoriesUseCase
 import makarova.citypulse.feature.profile.api.usecase.UpdateUserNameUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val updateUserNameUseCase: UpdateUserNameUseCase,
-    private val updateUserAvatarUseCase: UpdateUserAvatarUseCase,
-   // private val getFavoritesUseCase: GetFavoritesUseCase,
+    private val getFavoritesCountUseCase: GetFavoritesCountUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private val detectCityUseCase: DetectCityUseCase,
-  //  private val logoutUseCase: LogoutUseCase
+    private val getTopCategoriesUseCase: GetTopCategoriesUseCase,
+    private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ProfileState())
@@ -41,20 +44,15 @@ class ProfileViewModel @Inject constructor(
     fun reduce(event: ProfileEvent) {
         when (event) {
             ProfileEvent.LoadProfile -> loadProfile()
+
             ProfileEvent.Logout -> logout()
+
             ProfileEvent.OpenFavorites ->
                 emitEffect(ProfileEffect.NavigateToFavorites)
-
-            ProfileEvent.OpenCategories ->
-                emitEffect(ProfileEffect.NavigateToCategories)
-
-            ProfileEvent.ChangeCity ->
-                emitEffect(ProfileEffect.NavigateToCityPicker)
 
             ProfileEvent.Back ->
                 emitEffect(ProfileEffect.NavigateBack)
 
-            is ProfileEvent.ChangeAvatar -> changeAvatar(event.uri)
             is ProfileEvent.ChangeName -> changeName(event.newName)
         }
     }
@@ -65,20 +63,21 @@ class ProfileViewModel @Inject constructor(
 
             try {
                 val user = getCurrentUserUseCase()
+                val topCategories = getTopCategoriesUseCase(user.login)
                 val cityResult = detectCityUseCase.invoke()
                 val city = when (cityResult) {
                     is DetectCityResult.Success -> cityResult.city.name
                     else -> "Не определен"
                 }
 
-                // val favorites = getFavoritesUseCase(user.login)
+                val favoritesCount = getFavoritesCountUseCase.invoke(user.login)
 
                 _uiState.update {
                     it.copy(
                         userName = user.name,
-                        avatarUrl = user.avatarUrl,
                         city = city,
-                        // favoritesCount = favorites.size,
+                        topCategories = topCategories,
+                        favoritesCount = favoritesCount,
                         isLoading = false
                     )
                 }
@@ -94,7 +93,7 @@ class ProfileViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                val user = getCurrentUserUseCase() ?: return@launch
+                val user = getCurrentUserUseCase()
 
                 val success = updateUserNameUseCase(user.login, newName)
 
@@ -110,32 +109,9 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private fun changeAvatar(avatarUri: String) {
-        viewModelScope.launch {
-            try {
-                val user = getCurrentUserUseCase() ?: return@launch
-
-                // Здесь можно обработать изображение (сжать, загрузить на сервер и т.д.)
-                val avatarUrl = avatarUri // Временно используем URI как URL
-
-                val success = updateUserAvatarUseCase(user.login, avatarUrl)
-
-                if (success) {
-                    _uiState.update { it.copy(avatarUrl = avatarUrl) }
-                    emitEffect(ProfileEffect.ShowMessage("Фото обновлено"))
-                } else {
-                    emitEffect(ProfileEffect.ShowError("Не удалось обновить фото"))
-                }
-
-            } catch (e: Exception) {
-                emitEffect(ProfileEffect.ShowError("Ошибка: ${e.message}"))
-            }
-        }
-    }
-
     private fun logout() {
         viewModelScope.launch {
-          //  logoutUseCase()
+            logoutUseCase()
             emitEffect(ProfileEffect.Logout)
         }
     }

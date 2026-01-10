@@ -100,15 +100,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateUserAvatar(email: String, avatarUrl: String?): Boolean {
-        return try {
-            val rowsAffected = userDao.updateUserAvatar(email, avatarUrl)
-            rowsAffected > 0
-        } catch (e: Exception) {
-            false
-        }
-    }
-
     override suspend fun isLoggedIn(): Boolean {
         val token = tokenStorage.getToken() ?: return false
         return jwtManager.isTokenValid(token)

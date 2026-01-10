@@ -5,7 +5,6 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class ProfileState(
     val userName: String = "",
-    val avatarUrl: String? = null,
     val city: String = "",
     val topCategories: List<String> = emptyList(),
     val favoritesCount: Int = 0,
@@ -18,19 +17,15 @@ sealed interface ProfileEvent {
     data object Logout : ProfileEvent
 
     data object OpenFavorites : ProfileEvent
-    data object OpenCategories : ProfileEvent
-    data object ChangeCity : ProfileEvent
 
-    data class ChangeAvatar(val uri: String) : ProfileEvent
     data class ChangeName(val newName: String): ProfileEvent
 }
 
 sealed interface ProfileEffect {
     data object NavigateBack : ProfileEffect
     data object NavigateToFavorites : ProfileEffect
-    data object NavigateToCategories : ProfileEffect
-    data object NavigateToCityPicker : ProfileEffect
     data object Logout : ProfileEffect
+
     data class ShowError(val message: String): ProfileEffect
     data class ShowMessage(val message: String): ProfileEffect
 }

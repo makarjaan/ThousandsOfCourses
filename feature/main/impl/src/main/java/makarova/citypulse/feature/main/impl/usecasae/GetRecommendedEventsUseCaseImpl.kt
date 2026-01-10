@@ -3,7 +3,7 @@ package makarova.citypulse.feature.main.impl.usecasae
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import makarova.citypulse.feature.main.api.model.EventModel
-import makarova.citypulse.feature.main.api.repository.CategoryInterestRepository
+import makarova.citypulse.feature.main.api.repository.CategoriesRepository
 import makarova.citypulse.feature.main.api.repository.EventsRepository
 import makarova.citypulse.feature.main.api.usecase.GetRecommendedEventsUseCase
 import makarova.citypulse.feature.main.impl.utils.RecommendationScoreCalculator
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class GetRecommendedEventsUseCaseImpl @Inject constructor(
     private val eventsRepository: EventsRepository,
-    private val categoryInterestRepository: CategoryInterestRepository,
+    private val categoryInterestRepository: CategoriesRepository,
     private val calculator: RecommendationScoreCalculator,
     private val ioDispatcher: CoroutineDispatcher
 ) : GetRecommendedEventsUseCase {

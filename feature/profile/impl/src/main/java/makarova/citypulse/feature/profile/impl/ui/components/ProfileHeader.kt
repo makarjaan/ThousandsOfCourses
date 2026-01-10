@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 internal fun ProfileHeader(
     userName: String,
     cityName: String,
-    onAvatarClick: () -> Unit,
     onBackClick: () -> Unit,
     onNameClick: () -> Unit
 ) {
@@ -43,11 +42,11 @@ internal fun ProfileHeader(
             modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ProfileAvatar(onClick = onAvatarClick)
+
+            ProfileAvatar()
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Обернуть имя в Row с иконкой редактирования
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.clickable { onNameClick() }

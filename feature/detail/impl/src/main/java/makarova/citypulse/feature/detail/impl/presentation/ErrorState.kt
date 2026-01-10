@@ -7,9 +7,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-
+import makarova.citypulse.feature.detail.impl.R
 
 @Composable
 internal fun ErrorState(
@@ -24,25 +25,25 @@ internal fun ErrorState(
     ) {
         Icon(
             imageVector = Icons.Default.Error,
-            contentDescription = "Ошибка",
+            contentDescription = stringResource(R.string.error),
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.error
         )
 
         Text(
-            text = "Ошибка загрузки",
+            text = stringResource(R.string.error),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.error
         )
 
         Text(
-            text = message ?: "Неизвестная ошибка",
+            text = message ?: stringResource(R.string.no_errro),
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
 
         Button(onClick = onRetry) {
-            Text("Повторить попытку")
+            Text(stringResource(R.string.repeat))
         }
     }
 }

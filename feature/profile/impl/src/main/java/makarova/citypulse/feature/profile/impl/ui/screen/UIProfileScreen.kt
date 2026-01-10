@@ -16,18 +16,17 @@ import makarova.citypulse.feature.profile.impl.ui.components.ChangeNameDialog
 import makarova.citypulse.feature.profile.impl.ui.components.ProfileHeader
 import makarova.citypulse.feature.profile.impl.ui.components.ProfileLogout
 import makarova.citypulse.feature.profile.impl.ui.components.ProfileMenuItem
+import makarova.citypulse.feature.profile.impl.ui.components.TopCategoriesRow
 
 @Composable
 fun UIProfileScreen(
-    userName: String = "Арина",
-    cityName: String = "Москва",
+    userName: String,
+    cityName: String,
     avatarUrl: String? = null,
     onChangeName: (String) -> Unit,
-    favoritesCount: Int = 12,
-    onChangeAvatar: () -> Unit,
+    topCategories: List<String>,
+    favoritesCount: Int,
     onFavoritesClick: () -> Unit,
-    onCategoriesClick: () -> Unit,
-    onChangeCityClick: () -> Unit,
     onBackClick: () -> Unit,
     onLogoutClick: () -> Unit
 ) {
@@ -54,12 +53,14 @@ fun UIProfileScreen(
             userName = userName,
             cityName = cityName,
             onBackClick = onBackClick,
-            onAvatarClick = onChangeAvatar,
             onNameClick = { showChangeNameDialog = true }
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        TopCategoriesRow(categories = topCategories)
+
+        Spacer(modifier = Modifier.height(8.dp))
 
         ProfileMenuItem(
             title = "Избранные события",
@@ -67,21 +68,6 @@ fun UIProfileScreen(
             icon = Icons.Default.FavoriteBorder,
             onClick = onFavoritesClick
         )
-
-        ProfileMenuItem(
-            title = "Категории интересов",
-            subtitle = "Настрой рекомендации",
-            icon = Icons.Default.Tune,
-            onClick = onCategoriesClick
-        )
-
-        ProfileMenuItem(
-            title = "Город",
-            subtitle = cityName,
-            icon = Icons.Default.LocationOn,
-            onClick = onChangeCityClick
-        )
-
 
         Spacer(modifier = Modifier.weight(1f))
 

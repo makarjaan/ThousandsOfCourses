@@ -24,7 +24,5 @@ interface AuthRepository {
 
     suspend fun updateUserName(email: String, newName: String): Boolean
 
-    suspend fun updateUserAvatar(email: String, avatarUrl: String?): Boolean
-
     suspend fun changePassword(email: String, oldPassword: String, newPassword: String): Boolean
 }

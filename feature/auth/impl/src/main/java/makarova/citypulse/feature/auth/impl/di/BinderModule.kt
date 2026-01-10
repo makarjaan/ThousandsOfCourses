@@ -8,11 +8,13 @@ import makarova.citypulse.feature.auth.api.repository.AuthRepository
 import makarova.citypulse.feature.auth.api.usecase.CheckAuthUseCase
 import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
 import makarova.citypulse.feature.auth.api.usecase.LoginUseCase
+import makarova.citypulse.feature.auth.api.usecase.LogoutUseCase
 import makarova.citypulse.feature.auth.api.usecase.RegisterUseCase
 import makarova.citypulse.feature.auth.impl.repository.AuthRepositoryImpl
 import makarova.citypulse.feature.auth.impl.usecase.CheckAuthUseCaseImpl
 import makarova.citypulse.feature.auth.impl.usecase.GetCurrentUserUseCaseImpl
 import makarova.citypulse.feature.auth.impl.usecase.LoginUserUseCaseImpl
+import makarova.citypulse.feature.auth.impl.usecase.LogoutUseCaseImpl
 import makarova.citypulse.feature.auth.impl.usecase.RegisterUserUseCaseImpl
 import javax.inject.Singleton
 
@@ -39,4 +41,8 @@ interface BinderModule {
     @Binds
     @Singleton
     fun bindGetCurrentUserUseCase_to_Impl(impl: GetCurrentUserUseCaseImpl): GetCurrentUserUseCase
+
+    @Binds
+    @Singleton
+    fun bindLogOutUseCase_to_Impl(impl: LogoutUseCaseImpl): LogoutUseCase
 }

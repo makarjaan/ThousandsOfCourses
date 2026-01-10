@@ -3,12 +3,12 @@ package makarova.citypulse.feature.main.impl.usecasae
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import makarova.citypulse.feature.main.api.model.SearchResultModel
-import makarova.citypulse.feature.main.api.repository.SearchRepository
+import makarova.citypulse.feature.main.api.repository.EventsRepository
 import makarova.citypulse.feature.main.api.usecase.SearchEventsUseCase
 import javax.inject.Inject
 
 class SearchEventsUseCaseImpl @Inject constructor(
-    private val repository: SearchRepository,
+    private val repository: EventsRepository,
     private val ioDispatcher: CoroutineDispatcher
 ): SearchEventsUseCase {
 

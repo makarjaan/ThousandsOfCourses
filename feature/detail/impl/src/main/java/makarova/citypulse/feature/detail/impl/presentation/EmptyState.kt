@@ -7,8 +7,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import makarova.citypulse.feature.detail.impl.R
 
 
 @Composable
@@ -22,19 +24,19 @@ internal fun EmptyState(
     ) {
         Icon(
             imageVector = Icons.Default.QuestionMark,
-            contentDescription = "Не найдено",
+            contentDescription = stringResource(R.string.not_found),
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
-            text = "Событие не найдено",
+            text = stringResource(R.string.event_not_found),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
-            text = "Запрошенное событие не существует или было удалено",
+            text = stringResource(R.string.event_delete),
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant

@@ -5,10 +5,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import makarova.citypulse.feature.main.api.repository.CategoriesRepository
-import makarova.citypulse.feature.main.api.repository.CategoryInterestRepository
 import makarova.citypulse.feature.main.api.repository.EventsRepository
 import makarova.citypulse.feature.main.api.repository.RecommendationsRepository
-import makarova.citypulse.feature.main.api.repository.SearchRepository
 import makarova.citypulse.feature.main.api.usecase.ClearCategoryPreferencesUseCase
 import makarova.citypulse.feature.main.api.usecase.DetectCityUseCase
 import makarova.citypulse.feature.main.api.usecase.GetEventByCategoryUseCase
@@ -16,9 +14,7 @@ import makarova.citypulse.feature.main.api.usecase.GetEventCategoriesUseCase
 import makarova.citypulse.feature.main.api.usecase.GetRecommendedEventsUseCase
 import makarova.citypulse.feature.main.api.usecase.IncreaseCategoryScoreUseCase
 import makarova.citypulse.feature.main.api.usecase.SearchEventsUseCase
-import makarova.citypulse.feature.main.impl.repository.SearchRepositoryImpl
 import makarova.citypulse.feature.main.impl.repository.CategoriesRepositoryIml
-import makarova.citypulse.feature.main.impl.repository.CategoryInterestRepositoryImpl
 import makarova.citypulse.feature.main.impl.repository.EventsRepositoryImpl
 import makarova.citypulse.feature.main.impl.repository.RecommendationsRepositoryImpl
 import makarova.citypulse.feature.main.impl.usecasae.ClearCategoryPreferencesUseCaseImpl
@@ -52,17 +48,6 @@ interface BinderModule {
         impl: CategoriesRepositoryIml
     ): CategoriesRepository
 
-    @Binds
-    @Singleton
-    fun bindCategoryInterestRepository(
-        impl: CategoryInterestRepositoryImpl
-    ): CategoryInterestRepository
-
-    @Binds
-    @Singleton
-    fun bindSearchRepository_to_Impl(
-        impl: SearchRepositoryImpl
-    ): SearchRepository
 
     @Binds
     @Singleton
