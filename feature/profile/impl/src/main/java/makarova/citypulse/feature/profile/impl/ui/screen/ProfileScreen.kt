@@ -35,6 +35,7 @@ fun ProfileScreen(
                 ProfileEffect.NavigateToFavorites -> onFavorites()
 
                 ProfileEffect.Logout -> onLogout()
+
                 is ProfileEffect.ShowError -> {
                     snackbarHostState.showSnackbar(effect.message)
                 }
@@ -45,6 +46,7 @@ fun ProfileScreen(
             }
         }
     }
+
 
     UIProfileScreen(
         userName = state.userName,

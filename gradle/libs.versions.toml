@@ -2,7 +2,9 @@
 
 accompanistPermissions = "0.32.0"
 activityComposeVersion = "1.8.0"
+kotlinxCoroutinesTest = "1.7.3"
 minSdk = "26"
+mockk = "1.13.10"
 playServicesLocation = "21.0.1"
 runtimeLivedata = "1.5.4"
 targetSdk = "36"
@@ -13,6 +15,7 @@ kotlin = "2.0.21"
 ksp = "2.0.21-1.0.28"
 gradle-secrets = "2.0.1"
 kotlinxSerializationJson = "1.7.3"
+detekt = "1.23.8"
 
 # Core
 coreKtx = "1.17.0"
@@ -48,6 +51,11 @@ retrofit = "2.11.0"
 jwt = "4.4.0"
 security = "1.1.0-alpha04"
 
+#Firebase
+firebaseBom = "33.13.0"
+firebaseCrashlyticsPlugin = "3.0.6"
+gmsPlugin = "4.4.2"
+
 [libraries]
 # AndroidX core
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -59,6 +67,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core"}
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Tests
@@ -89,6 +98,7 @@ jetpack-navigation = { group = "androidx.navigation", name = "navigation-compose
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavCompose" }
 
 # Room
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
@@ -104,6 +114,13 @@ retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-
 jwt = { group = "com.auth0", name = "java-jwt", version.ref = "jwt"}
 androidx-security = { group = "androidx.security", name = "security-crypto", version.ref = "security"}
 
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-perfomance = { group = "com.google.firebase", name = "com.google.firebase"}
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -113,6 +130,9 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 gradle-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "gradle-secrets" }
+gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
+crashlytics-plugin = {id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin"}
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 
 [bundles]
 compose = [

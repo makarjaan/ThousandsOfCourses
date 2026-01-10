@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.main.api.usecase.GetEventCategoriesUseCase
 import makarova.citypulse.feature.main.api.usecase.IncreaseCategoryScoreUseCase
 import javax.inject.Inject
@@ -15,10 +16,15 @@ import javax.inject.Inject
 class CategoriesViewModel @Inject constructor(
     private val getCategoriesUseCase: GetEventCategoriesUseCase,
     private val increaseCategoryScoreUseCase: IncreaseCategoryScoreUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CategoriesUiState())
     val state: StateFlow<CategoriesUiState> = _state
+
+    init {
+        analyticsTracker.trackScreen("MainScreen")
+    }
 
     fun reduce(event: CategoriesEvent) {
         when (event) {

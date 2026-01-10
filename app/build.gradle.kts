@@ -4,6 +4,9 @@ plugins {
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.crashlytics.plugin)
+    alias(libs.plugins.gms)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -38,6 +41,12 @@ android {
     }
 }
 
+detekt {
+    toolVersion = "1.23.8"
+    config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
+}
+
 dependencies {
 
     implementation(project(path = ":core:design-system"))
@@ -45,6 +54,7 @@ dependencies {
     implementation(project(path = ":core:utils"))
     implementation(project(path = ":core:database"))
     implementation(project(path = ":core:network"))
+    implementation(project(path = ":core:analytics"))
 
     implementation(project(path = ":feature:auth:api"))
     implementation(project(path = ":feature:auth:impl"))
@@ -92,4 +102,9 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson.converter)
+
+    //Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 }

@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import makarova.citypulse.designsystem.ui.AppTheme
 import makarova.citypulse.navigation.AppRoot
 
@@ -29,5 +32,9 @@ class MainActivity: ComponentActivity() {
                 }
             }
         }
+//        lifecycleScope.launch {
+//            delay(5_000L)
+//            throw IllegalStateException("TEST_CRUSH")
+//        }
     }
 }

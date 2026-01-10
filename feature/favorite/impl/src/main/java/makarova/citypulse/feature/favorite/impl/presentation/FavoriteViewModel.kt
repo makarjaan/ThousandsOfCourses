@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
 import makarova.citypulse.feature.favorite.api.usecase.GetFavoriteEventsUseCase
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
     private val getFavoriteEventsUseCase: GetFavoriteEventsUseCase,
-    private val getCurrentUserUseCase: GetCurrentUserUseCase
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(FavoriteState())
@@ -27,6 +29,7 @@ class FavoriteViewModel @Inject constructor(
 
     init {
         loadFavorites()
+        analyticsTracker.trackScreen("FavoriteScreen")
     }
 
     fun reduce(event: FavoriteEvent) {

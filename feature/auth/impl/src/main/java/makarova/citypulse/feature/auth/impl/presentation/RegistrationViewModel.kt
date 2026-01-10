@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.auth.api.usecase.LoginUseCase
 import makarova.citypulse.feature.auth.api.usecase.RegisterUseCase
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase,
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegistrationState())
@@ -23,6 +25,11 @@ class RegistrationViewModel @Inject constructor(
 
     private val _uiEffect = MutableSharedFlow<RegistrationEffect>()
     val uiEffect: SharedFlow<RegistrationEffect> = _uiEffect
+
+
+    init {
+        analyticsTracker.trackScreen("RegisterScreen")
+    }
 
     fun reduce(event: RegistrationEvent) {
         when (event) {

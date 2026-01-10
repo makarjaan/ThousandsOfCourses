@@ -40,7 +40,10 @@ dependencies {
     implementation(project(path = ":core:navigation"))
     implementation(project(path = ":core:database"))
     implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:analytics"))
+
     implementation(project(path = ":feature:auth:api"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -48,6 +51,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+
 
     //Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -60,5 +66,6 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+    testImplementation(kotlin("test"))
 
 }

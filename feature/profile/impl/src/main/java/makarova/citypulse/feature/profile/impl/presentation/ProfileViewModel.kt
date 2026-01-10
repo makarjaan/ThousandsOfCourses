@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
 import makarova.citypulse.feature.auth.api.usecase.LogoutUseCase
 import makarova.citypulse.feature.favorite.api.usecase.GetFavoriteEventsUseCase
@@ -28,7 +29,8 @@ class ProfileViewModel @Inject constructor(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private val detectCityUseCase: DetectCityUseCase,
     private val getTopCategoriesUseCase: GetTopCategoriesUseCase,
-    private val logoutUseCase: LogoutUseCase
+    private val logoutUseCase: LogoutUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ProfileState())
@@ -39,6 +41,7 @@ class ProfileViewModel @Inject constructor(
 
     init {
         loadProfile()
+        analyticsTracker.trackScreen("ProfileScreen")
     }
 
     fun reduce(event: ProfileEvent) {
@@ -111,8 +114,8 @@ class ProfileViewModel @Inject constructor(
 
     private fun logout() {
         viewModelScope.launch {
-            logoutUseCase()
             emitEffect(ProfileEffect.Logout)
+            logoutUseCase()
         }
     }
 

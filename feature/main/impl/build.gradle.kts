@@ -48,6 +48,7 @@ dependencies {
     implementation(project(path = ":core:database"))
     implementation(project(path = ":core:utils"))
     implementation(project(path = ":core:network"))
+    implementation(project(path = ":core:analytics"))
 
     implementation(project(path = ":feature:main:api"))
     implementation(project(path = ":feature:detail:api"))
@@ -60,6 +61,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     //Compose
     implementation(platform(libs.androidx.compose.bom))

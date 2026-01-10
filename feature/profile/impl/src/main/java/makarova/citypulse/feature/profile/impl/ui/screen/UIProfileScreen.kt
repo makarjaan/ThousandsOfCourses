@@ -3,8 +3,6 @@ package makarova.citypulse.feature.profile.impl.ui.screen
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Tune
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +20,6 @@ import makarova.citypulse.feature.profile.impl.ui.components.TopCategoriesRow
 fun UIProfileScreen(
     userName: String,
     cityName: String,
-    avatarUrl: String? = null,
     onChangeName: (String) -> Unit,
     topCategories: List<String>,
     favoritesCount: Int,

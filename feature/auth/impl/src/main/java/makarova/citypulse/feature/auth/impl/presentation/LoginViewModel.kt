@@ -8,12 +8,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.auth.api.usecase.LoginUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val analyticsTracker: AnalyticsTracker,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginState())
@@ -21,6 +23,10 @@ class LoginViewModel @Inject constructor(
 
     private val _uiEffect = MutableSharedFlow<LoginEffect>()
     val uiEffect: SharedFlow<LoginEffect> = _uiEffect
+
+    init {
+        analyticsTracker.trackScreen("LoginScreen")
+    }
 
     fun reduce(event: LoginEvent) {
         when (event) {

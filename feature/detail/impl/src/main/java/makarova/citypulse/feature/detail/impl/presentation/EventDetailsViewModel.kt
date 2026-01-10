@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import makarova.citypulse.analytics.AnalyticsTracker
 import makarova.citypulse.feature.auth.api.usecase.GetCurrentUserUseCase
 import makarova.citypulse.feature.detail.api.usecase.GetEventDetailsUseCase
 import makarova.citypulse.feature.favorite.api.usecase.IsFavoriteUseCase
@@ -24,7 +25,8 @@ class EventDetailsViewModel @Inject constructor(
     private val getEventDetailsUseCase: GetEventDetailsUseCase,
     private val toggleFavoriteUseCase: ToggleFavoriteUseCase,
     private val isFavoriteUseCase: IsFavoriteUseCase,
-    private val getCurrentUserUseCase: GetCurrentUserUseCase
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     val eventId: String = savedStateHandle.get<String>("eventId") ?: ""
@@ -39,6 +41,7 @@ class EventDetailsViewModel @Inject constructor(
         if (eventId.isNotBlank()) {
             loadEvent(eventId)
         }
+        analyticsTracker.trackScreen("EventDetailScreen")
     }
 
     fun reduce(event: EventDetailsEvent) {
