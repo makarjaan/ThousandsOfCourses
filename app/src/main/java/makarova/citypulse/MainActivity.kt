@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.perf.ktx.performance
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,6 +23,9 @@ class MainActivity: ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val trace = Firebase.performance.newTrace("app_start_trace")
+        trace.start()
+
         setContent {
             AppTheme {
                 Surface(
@@ -36,5 +41,10 @@ class MainActivity: ComponentActivity() {
 //            delay(5_000L)
 //            throw IllegalStateException("TEST_CRUSH")
 //        }
+
+        lifecycleScope.launch {
+            delay(1000)
+            trace.stop()
+        }
     }
 }

@@ -8,7 +8,9 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import makarova.citypulse.feature.profile.impl.presentation.ProfileEvent
 import makarova.citypulse.feature.profile.impl.presentation.ProfileViewModel
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import makarova.citypulse.feature.profile.impl.presentation.ProfileEffect
 
 @Composable
@@ -27,26 +29,36 @@ fun ProfileScreen(
         viewModel.reduce(ProfileEvent.LoadProfile)
     }
 
-    LaunchedEffect(Unit) {
+    var effectHandlingCounter by remember { mutableStateOf(0) }
+
+    LaunchedEffect(effectHandlingCounter) {
         viewModel.uiEffect.collect { effect ->
             when (effect) {
-                ProfileEffect.NavigateBack -> onBack()
+                ProfileEffect.NavigateBack -> {
+                    onBack()
+                    effectHandlingCounter++
+                }
 
-                ProfileEffect.NavigateToFavorites -> onFavorites()
+                ProfileEffect.NavigateToFavorites -> {
+                    onFavorites()
+                    effectHandlingCounter++
+                }
 
-                ProfileEffect.Logout -> onLogout()
+                ProfileEffect.Logout -> {
+                    onLogout()
+                    effectHandlingCounter++
+                }
 
                 is ProfileEffect.ShowError -> {
                     snackbarHostState.showSnackbar(effect.message)
                 }
 
-                is ProfileEffect.ShowMessage ->  {
+                is ProfileEffect.ShowMessage -> {
                     snackbarHostState.showSnackbar(effect.message)
                 }
             }
         }
     }
-
 
     UIProfileScreen(
         userName = state.userName,

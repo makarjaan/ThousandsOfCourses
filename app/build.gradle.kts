@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.crashlytics.plugin)
     alias(libs.plugins.gms)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.perf.plugin)
 }
 
 android {
@@ -107,4 +108,5 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.perfomance)
 }

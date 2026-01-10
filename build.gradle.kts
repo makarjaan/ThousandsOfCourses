@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.gms) apply false
     alias(libs.plugins.crashlytics.plugin) apply false
     alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.perf.plugin) apply false
 }
 
 private val versionMajor = 1

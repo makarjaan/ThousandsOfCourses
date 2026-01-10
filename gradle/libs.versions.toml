@@ -55,6 +55,7 @@ security = "1.1.0-alpha04"
 firebaseBom = "33.13.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 gmsPlugin = "4.4.2"
+firebase-perf = "1.4.2"
 
 [libraries]
 # AndroidX core
@@ -118,7 +119,7 @@ androidx-security = { group = "androidx.security", name = "security-crypto", ver
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
-firebase-perfomance = { group = "com.google.firebase", name = "com.google.firebase"}
+firebase-perfomance = { group = "com.google.firebase", name = "firebase-perf" }
 
 
 [plugins]
@@ -132,6 +133,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 gradle-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "gradle-secrets" }
 gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 crashlytics-plugin = {id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin"}
+perf-plugin = {id = "com.google.firebase.firebase-perf", version.ref = "firebase-perf"}
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 
 [bundles]
