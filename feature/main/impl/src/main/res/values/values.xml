@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_appname">City Pulse</string>
+    <string name="text_sbros">Сброс</string>
+    <string name="text_search">Поиск событий, мест, артистов</string>
+    <string name="text_recommen">Рекомендации</string>
+    <string name="text_category">События по категории</string>
+    <string name="text_null_category">По выбранной категории событий нет</string>
+    <string name="text_choose_city">Выберите город</string>
+    <string name="text_auto">Определить автоматически</string>
+    <string name="text_near">· события рядом с тобой</string>
+
+    <string name="text_permit">Разрешить</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_profile">Профиль</string>
+
+    <string name="event">Событие</string>
+    <string name="place">Место</string>
+    <string name="news">Новость</string>
+    <string name="list">Подборка</string>
+
+    <string name="search_result">Результаты поиска:</string>
+    <string name="search_zapros">По запросу </string>
+    <string name="nothing"> ничего не найдено</string>
+    <string name="search_min">Введите минимум 2 символа для поиска</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="free">Бесплатно</string>
+    <string name="date">Дата</string>
+    <string name="place">Место </string>
+    <string name="address">Адрес </string>
+    <string name="age">Возрастное ограничение: </string>
+    <string name="price">Цена: </string>
+    <string name="fav">В избранном у </string>
+    <string name="people"> человек</string>
+    <string name="desc">Описание</string>
+    <string name="site">Перейти на сайт события</string>
+
+    <string name="not_found">Не найдено</string>
+    <string name="event_not_found">Событие не найдено</string>
+    <string name="event_delete">Запрошенное событие не существует или было удалено</string>
+
+    <string name="error">Ошибка загрузки</string>
+    <string name="no_errro">Неизвестная ошибка</string>
+    <string name="repeat">Повторить попытку</string>
+
+    <string name="back">Назад</string>
+
+</resources>

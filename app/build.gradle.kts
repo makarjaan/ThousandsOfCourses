@@ -1,18 +1,25 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.crashlytics.plugin)
+    alias(libs.plugins.gms)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.perf.plugin)
 }
 
 android {
-    namespace = "makarova.thousandsofcourses"
-    compileSdk = 36
+    namespace = "makarova.citypulse"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "makarova.thousandsofcourses"
-        minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = "makarova.citypulse"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = rootProject.extra.get("versionCode") as Int
+        versionName = rootProject.extra.get("versionName") as String
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,7 +42,36 @@ android {
     }
 }
 
+detekt {
+    toolVersion = "1.23.8"
+    config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
+}
+
 dependencies {
+
+    implementation(project(path = ":core:design-system"))
+    implementation(project(path = ":core:navigation"))
+    implementation(project(path = ":core:utils"))
+    implementation(project(path = ":core:database"))
+    implementation(project(path = ":core:network"))
+    implementation(project(path = ":core:analytics"))
+
+    implementation(project(path = ":feature:auth:api"))
+    implementation(project(path = ":feature:auth:impl"))
+
+    implementation(project(path = ":feature:main:api"))
+    implementation(project(path = ":feature:main:impl"))
+
+    implementation(project(path = ":feature:detail:api"))
+    implementation(project(path = ":feature:detail:impl"))
+
+    implementation(project(path = ":feature:profile:api"))
+    implementation(project(path = ":feature:profile:impl"))
+
+    implementation(project(path = ":feature:favorite:api"))
+    implementation(project(path = ":feature:favorite:impl"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -43,4 +79,34 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Hilt
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+
+    //Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //Compose
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.jetpack.navigation)
+
+    //Room
+    implementation(libs.room)
+    ksp(libs.room.ksp)
+    implementation(libs.room.ktx)
+
+    //Network
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson.converter)
+
+    //Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.perfomance)
 }

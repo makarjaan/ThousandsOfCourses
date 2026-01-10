@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_app_name">CityPulse</string>
+    <string name="text_descrip">События города, подобранные для тебя</string>
+    <string name="text_login_desc">Рады видеть тебя снова</string>
+    <string name="text_already">Уже есть аккаунт?</string>
+    <string name="text_no_account">Нет аккаунта?</string>
+
+    <string name="tf_email">Email</string>
+    <string name="tf_password">Пароль</string>
+    <string name="tf_name">Имя</string>
+    
+    <string name="btn_enter">Войти</string>
+    <string name="btn_register">Регистрация</string>
+    <string name="btn_start">Начать пользоваться</string>
+    
+</resources>
